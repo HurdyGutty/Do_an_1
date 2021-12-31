@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Dec 31, 2021 at 06:39 AM
--- Server version: 5.7.33
--- PHP Version: 7.4.19
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,8 +20,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `adm_list`
 --
 
-CREATE TABLE `adm_list` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `adm_list`;
+CREATE TABLE IF NOT EXISTS `adm_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `address` varchar(100) NOT NULL,
@@ -36,9 +30,11 @@ CREATE TABLE `adm_list` (
   `birthday` date NOT NULL,
   `email` varchar(100) NOT NULL,
   `photo` varchar(200) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `access` bit(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `password` varchar(200) NOT NULL,
+  `access` bit(2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `adm_list`
@@ -46,7 +42,8 @@ CREATE TABLE `adm_list` (
 
 INSERT INTO `adm_list` (`id`, `name`, `phone`, `address`, `gender`, `birthday`, `email`, `photo`, `password`, `access`) VALUES
 (1, 'Nhat', '09771168123', 'Điện Biên Phủ, Quận 1', b'01', '1997-09-23', 'red@gmail.com', 'https://static.wikia.nocookie.net/heroes-and-villians/images/8/83/Winnie_the_Pooh.png/revision/latest/scale-to-width-down/1000?cb=20191229203055', 'abc', b'01'),
-(3, 'Huy', '0982224466', 'Hải Phòng', b'01', '1998-07-23', 'blue@gmail.com', '//upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Mickey-Mouse.jpg/220px-Mickey-Mouse.jpg', 'abc', b'00');
+(3, 'Huy', '0982224466', 'Hải Phòng', b'01', '1998-07-23', 'blue@gmail.com', '//upload.wikimedia.org/wikipedia/vi/thumb/1/1a/Mickey-Mouse.jpg/220px-Mickey-Mouse.jpg', 'abc', b'00'),
+(5, 'Hùng', '0977227990', 'Vũng Tàu', b'01', '1991-02-14', 'yellow@gmail.com', 'https://bigcedar.com/wp-content/uploads/2020/12/AdobeStock_453941794-1.jpg', 'abc', b'00');
 
 -- --------------------------------------------------------
 
@@ -54,8 +51,9 @@ INSERT INTO `adm_list` (`id`, `name`, `phone`, `address`, `gender`, `birthday`, 
 -- Table structure for table `cli_list`
 --
 
-CREATE TABLE `cli_list` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `cli_list`;
+CREATE TABLE IF NOT EXISTS `cli_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `gender` bit(2) NOT NULL,
   `address` varchar(200) DEFAULT NULL,
@@ -64,9 +62,9 @@ CREATE TABLE `cli_list` (
   `photo` varchar(200) DEFAULT NULL,
   `password` varchar(200) NOT NULL,
   `birthday` date DEFAULT NULL,
-  `token` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+  `token` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 --
 -- Dumping data for table `cli_list`
 --
@@ -82,14 +80,16 @@ INSERT INTO `cli_list` (`id`, `name`, `gender`, `address`, `email`, `phone`, `ph
 -- Table structure for table `manufactures`
 --
 
-CREATE TABLE `manufactures` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `manufactures`;
+CREATE TABLE IF NOT EXISTS `manufactures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `phone` varchar(15) NOT NULL,
   `photo` varchar(200) NOT NULL,
-  `address` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `address` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `manufactures`
@@ -106,15 +106,19 @@ INSERT INTO `manufactures` (`id`, `name`, `description`, `phone`, `photo`, `addr
 -- Table structure for table `out_list`
 --
 
-CREATE TABLE `out_list` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `out_list`;
+CREATE TABLE IF NOT EXISTS `out_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
   `order_time` timestamp NOT NULL,
   `receiver_name` varchar(50) NOT NULL,
   `receiver_phone` varchar(15) NOT NULL,
   `receiver_address` varchar(100) NOT NULL,
-  `note` enum('hủy','mới','duyệt') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `note` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_out_manufacturers_id` (`client_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Dumping data for table `out_list`
@@ -130,11 +134,22 @@ INSERT INTO `out_list` (`id`, `client_id`, `order_time`, `receiver_name`, `recei
 -- Table structure for table `out_product`
 --
 
-CREATE TABLE `out_product` (
+DROP TABLE IF EXISTS `out_product`;
+CREATE TABLE IF NOT EXISTS `out_product` (
   `out_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `quantity` int(11) NOT NULL,
+  PRIMARY KEY (`out_id`,`product_id`),
+  KEY `FK_product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+--
+-- Dumping data for table `out_product`
+--
+
+INSERT INTO `out_product` (`out_id`, `product_id`, `quantity`) VALUES
+(1, 5, 2),
+(1, 11, 1),
+(2, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -142,10 +157,12 @@ CREATE TABLE `out_product` (
 -- Table structure for table `products_category`
 --
 
-CREATE TABLE `products_category` (
-  `id` int(11) NOT NULL,
-  `category` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `products_category`;
+CREATE TABLE IF NOT EXISTS `products_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products_category`
@@ -162,11 +179,12 @@ INSERT INTO `products_category` (`id`, `category`) VALUES
 -- Table structure for table `products_gender`
 --
 
-CREATE TABLE `products_gender` (
-  `id` tinyint(4) NOT NULL,
-  `gender` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+DROP TABLE IF EXISTS `products_gender`;
+CREATE TABLE IF NOT EXISTS `products_gender` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `gender` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 --
 -- Dumping data for table `products_gender`
 --
@@ -183,8 +201,9 @@ INSERT INTO `products_gender` (`id`, `gender`) VALUES
 -- Table structure for table `products_list`
 --
 
-CREATE TABLE `products_list` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `products_list`;
+CREATE TABLE IF NOT EXISTS `products_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
@@ -192,8 +211,12 @@ CREATE TABLE `products_list` (
   `category_id` int(11) NOT NULL,
   `description` text NOT NULL,
   `photo` varchar(200) NOT NULL,
-  `manufacturers_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `manufacturers_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_products_manufacturers_id` (`manufacturers_id`),
+  KEY `FK_products_gender` (`gender_id`) USING BTREE,
+  KEY `FK_products_category` (`category_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products_list`
@@ -219,122 +242,23 @@ INSERT INTO `products_list` (`id`, `name`, `price`, `quantity`, `gender_id`, `ca
 -- Table structure for table `receipt_history`
 --
 
-CREATE TABLE `receipt_history` (
+DROP TABLE IF EXISTS `receipt_history`;
+CREATE TABLE IF NOT EXISTS `receipt_history` (
   `out_id` int(11) NOT NULL,
-  `adm_id` int(11) NOT NULL,
-  `receipt_stat` tinyint(4) NOT NULL,
-  `work_time` timestamp NOT NULL
+  `adm_id` int(11) DEFAULT NULL,
+  `receipt_stat` enum('Đã hủy','Mới','Đã duyệt') NOT NULL,
+  `work_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`out_id`),
+  KEY `FK_out_adm_id` (`adm_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `receipt_history`
 --
 
---
--- Indexes for table `adm_list`
---
-ALTER TABLE `adm_list`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cli_list`
---
-ALTER TABLE `cli_list`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `manufactures`
---
-ALTER TABLE `manufactures`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `out_list`
---
-ALTER TABLE `out_list`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_out_manufacturers_id` (`client_id`);
-
---
--- Indexes for table `out_product`
---
-ALTER TABLE `out_product`
-  ADD PRIMARY KEY (`out_id`,`product_id`),
-  ADD KEY `FK_product_id` (`product_id`);
-
---
--- Indexes for table `products_category`
---
-ALTER TABLE `products_category`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products_gender`
---
-ALTER TABLE `products_gender`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `products_list`
---
-ALTER TABLE `products_list`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_products_manufacturers_id` (`manufacturers_id`),
-  ADD KEY `FK_products_gender` (`gender_id`) USING BTREE,
-  ADD KEY `FK_products_category` (`category_id`) USING BTREE;
-
---
--- Indexes for table `receipt_history`
---
-ALTER TABLE `receipt_history`
-  ADD PRIMARY KEY (`out_id`,`adm_id`),
-  ADD KEY `FK_admin_id` (`adm_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `adm_list`
---
-ALTER TABLE `adm_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `cli_list`
---
-ALTER TABLE `cli_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `manufactures`
---
-ALTER TABLE `manufactures`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `out_list`
---
-ALTER TABLE `out_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `products_category`
---
-ALTER TABLE `products_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `products_gender`
---
-ALTER TABLE `products_gender`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `products_list`
---
-ALTER TABLE `products_list`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+INSERT INTO `receipt_history` (`out_id`, `adm_id`, `receipt_stat`, `work_time`) VALUES
+(1, 3, 'Đã duyệt', '2021-12-29 19:47:17'),
+(2, NULL, 'Mới', NULL);
 
 --
 -- Constraints for dumped tables
@@ -365,7 +289,7 @@ ALTER TABLE `products_list`
 -- Constraints for table `receipt_history`
 --
 ALTER TABLE `receipt_history`
-  ADD CONSTRAINT `FK_admin_id` FOREIGN KEY (`adm_id`) REFERENCES `adm_list` (`id`),
+  ADD CONSTRAINT `FK_out_adm_id` FOREIGN KEY (`adm_id`) REFERENCES `adm_list` (`id`),
   ADD CONSTRAINT `FK_out_history_id` FOREIGN KEY (`out_id`) REFERENCES `out_list` (`id`);
 COMMIT;
 
