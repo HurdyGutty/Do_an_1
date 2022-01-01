@@ -12,6 +12,7 @@ echo	"Thể loại: ".$result['category']."<br>";
 echo	"Nhà sản xuất: ".$result['manufacturers_name']."<br>";
 echo 	"Giá sản phẩm: ".$result['price']."<br>";
 echo	"Số lượng: ".$result['quantity']."<br>";
+echo 	"Mô tả: ".$result['description']."<br>";
 echo 	"<button onclick='fix_page(".$id.")'>Sửa thông tin</button>";
 echo 	"</div>";
 mysqli_close($ket_noi);
