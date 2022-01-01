@@ -98,24 +98,62 @@
 	</div>
 	<?php mysqli_close($ket_noi); ?>
 	<script type="text/javascript">
-		function viewpage(link,num){
+		function viewpage(num){
 			const xhttp = new XMLHttpRequest();
 			xhttp.onload = function() {
-				document.getElementById('main_list').innerHTML = this.responseText;
-			}
-			switch(link){
+				<?php if($link == "admin"){
+				echo "document.getElementById(\"main_body\").innerHTML = this.responseText;";
+			} else {
+				echo "document.getElementById(\"main_list\").innerHTML = this.responseText;";
+			}?>
+			};
+			<?php
+			switch($link){
 				case 'product':
-				xhttp.open("GET","detail_view/product_detail.php?d=" + num);
+				echo "xhttp.open(\"GET\",\"detail_view/product_detail.php?d=\"+num);";
 				break;
 				case 'out':
-				xhttp.open("GET","detail_view/order_detail.php?d=" + num);
+				echo "xhttp.open(\"GET\",\"detail_view/order_detail.php?d=\"+num);";
 				break;
-				<?php if($_SESSION['access'] == 1){
-					include 'super_admin_view.php';
-				} ?>
+				case 'manufacturers':
+				echo "xhttp.open(\"GET\",\"detail_view/manufacturers_detail.php?d=\"+num);";
+				break;
+				case 'admin':
+				echo "xhttp.open(\"GET\",\"detail_view/admin_detail.php?d=\"+num);";
+				break; 
 			}
+			?>
 			xhttp.send();
 			
+		}
+		const reload_page = function(){
+			window.location.reload();
+		}
+		const fix_page = function(num){
+			const xhttp = new XMLHttpRequest();
+			xhttp.onload = function() {
+				<?php if($link == "admin"){
+				echo "document.getElementById(\"main_body\").innerHTML = this.responseText;";
+			} else {
+				echo "document.getElementById(\"main_list\").innerHTML = this.responseText;";
+			}?>
+			}
+			<?php 
+			switch ($link) {
+				case 'product':
+				echo "xhttp.open(\"GET\",\"fixing/product_fix.php?d=\"+num);";
+				break;
+				case 'out':
+				echo "xhttp.open(\"GET\",\"fixing/order_fix.php?d=\"+num);";
+				break;
+				case 'manufacturers':
+				echo "xhttp.open(\"GET\",\"fixing/manufacturers_fix.php?d=\"+num);";
+				break;
+				case 'admin':
+				echo "xhttp.open(\"GET\",\"fixing/admin_fix.php?d=\"+num);";
+				break; 
+						}?>
+			xhttp.send();
 		}
 	</script>
 </body>

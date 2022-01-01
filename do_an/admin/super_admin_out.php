@@ -10,7 +10,7 @@
 				<?php 
 				foreach ($ket_qua as $each) {
 					?>
-					<div class="list_items">
+					<div class="list_items" onclick="viewpage(<?php echo $each['out_id'];?>)">
 						<div>
 							<?php echo "Tên: ".$each['name'];?><br>
 							<?php echo "Địa chỉ: ".$each['address'];?><br>

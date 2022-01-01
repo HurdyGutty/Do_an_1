@@ -7,7 +7,7 @@
 			<?php 
 				foreach ($ket_qua as $each) {
 					?>
-					<div class="items">
+					<div class="items" onclick="viewpage(<?php echo $each['id'];?>)">
 						<img src="<?php echo $each['photo']?>">
 						<div><?php echo $each['name']; ?></div>
 						<div><?php echo $each['phone'];?></div>

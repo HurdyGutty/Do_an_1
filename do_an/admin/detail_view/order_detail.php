@@ -43,3 +43,4 @@ foreach($full_order as $order_item) {
 }
 echo	"</table>
 </div>";
+mysqli_close($ket_noi);
