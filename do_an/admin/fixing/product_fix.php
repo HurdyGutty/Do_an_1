@@ -50,7 +50,7 @@ echo 	"<br>";
 
 echo 	"Giá sản phẩm: <input type='text' name='price' value='".$result['price']."'><br>";
 echo	"Số lượng: <input type='text' name='quantity' value='".$result['quantity']."'><br>";
-echo 	"Mô tả: <textarea name='description' value='".$result['description']."'></textarea><br>";
+echo 	"Mô tả: <textarea name='description'>".$result['description']."</textarea><br>";
 echo "<button type=\"submit\">Sửa thông tin</button>";
 echo 	"</form>";
 mysqli_close($ket_noi);

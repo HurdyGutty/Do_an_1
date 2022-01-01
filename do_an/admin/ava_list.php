@@ -18,7 +18,7 @@
 			<div id="page">
 				<?php for ($i=1 ; $i <= $max_page ; $i++) 
 				{ ?>
-					<a href="?link=<?php echo $link?><?php echo ($tim_kiem) ? "&tim_kiem=$tim_kiem" : "" ?>&page=<?php echo $i?>"><?php echo $i ?></a>	
+					<a href="?link=<?php echo $link?><?php echo ($tim_kiem) ? "&tim_kiem=$tim_kiem" : "" ?>&page=<?php echo $i?>&tool=<?php echo $tool;?>"><?php echo $i ?></a>	
 				<?php }; ?>
 			</div>
 		</div>

@@ -23,6 +23,11 @@
 	} else {
 		$tim_kiem = "";
 	} 
+	if (isset($_GET['tool'])) {
+		$tool = $_GET['tool'];	
+	} else {
+		$tool = 'view';
+	}
 	$attachment = '';
 	$target = '*';
 	$surfix = '';
@@ -58,6 +63,9 @@
 	}else {
 			$page = 1;
 		};
+	if ($tool === "del" && empty($_SESSION['access'])) {
+		header('location:logout.php');
+	}
 	$sql_dem = "select count(*) from $table $attachment where ".$surfix."name like '%$tim_kiem%'";
 	$ket_qua_dem = mysqli_fetch_array(mysqli_query($ket_noi,$sql_dem));
 	$so_ket_qua = $ket_qua_dem['count(*)'];
@@ -91,7 +99,24 @@
 			<?php require "horizontal_bar.php"; ?>
 		</ul>
 		</div>
-		<?php include "$list.php"; ?>
+
+		<?php 
+		switch ($tool) {
+			case 'view':
+				include "$list.php";
+				break;
+			case 'create':
+				include "create/create.php";
+				break;
+			case 'del':
+				include "delete/delete.php";
+				break;
+			default:
+				header('location:logout.php');
+				break;
+		}
+		 
+		?>
 		<div id="footer">
 			
 		</div>
