@@ -82,12 +82,12 @@
 		<div id="nav_ver">
 			<img src="//upload.wikimedia.org/wikipedia/vi/thumb/3/37/Bitis_logo.svg/501px-Bitis_logo.svg.png">
 		<ul>
-			<?php include "nav_ver.php"; ?>			
+			<?php include "page_parts/nav_ver.php"; ?>			
 		</ul>
 		</div>
 		
 		<div id="compartment">
-			<form action="add_search.php">
+			<form action="page_parts/add_search.php">
 				<input type="text" name="tim_kiem" value="<?php echo $tim_kiem ?>">
 				<input type="text" name="link" value="<?php echo $link ?>" hidden >
 				<button type="submit">Tìm kiếm tên</button>
@@ -96,14 +96,14 @@
 		
 		<div id="nav_hor">
 		<ul>
-			<?php require "horizontal_bar.php"; ?>
+			<?php require "page_parts/horizontal_bar.php"; ?>
 		</ul>
 		</div>
 
 		<?php 
 		switch ($tool) {
 			case 'view':
-				include "$list.php";
+				include "page_parts/$list.php";
 				break;
 			case 'create':
 				include "create/create.php";
