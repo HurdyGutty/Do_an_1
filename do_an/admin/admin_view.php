@@ -79,10 +79,12 @@
 	$ket_qua = mysqli_query($ket_noi,$sql);
 	?>
 	<div id="main_div">
-		<div id="nav_ver">
+		<div id="nav_panel">
 			<img src="//upload.wikimedia.org/wikipedia/vi/thumb/3/37/Bitis_logo.svg/501px-Bitis_logo.svg.png">
 		<ul>
-			<?php include "page_parts/nav_ver.php"; ?>			
+			<div id="nav_ver">
+			<?php include "page_parts/nav_ver.php"; ?>	
+			</div>		
 		</ul>
 		</div>
 		

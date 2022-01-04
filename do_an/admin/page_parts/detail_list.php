@@ -4,20 +4,20 @@
 			switch ($link) {
 				case 'product':
 				?>
-				<div class="list_items">
-					<div>Tên sản phẩm</div>
-					<div>Giá sản phẩm</div>
-					<div>Nhà sản xuất</div>
-					<div>Mô tả</div>
+				<div class="list_items products_view">
+					<div class="align_center">Tên sản phẩm</div>
+					<div class="align_center">Giá sản phẩm</div>
+					<div class="align_center">Nhà sản xuất</div>
+					<div class="align_center">Mô tả</div>
 				</div>
 				<?php
 				foreach ($ket_qua as $each) {
 					?>
-					<div class="list_items" onclick="viewpage(<?php echo $each['id'];?>)">
-						<div><?php echo $each['name']; ?></div>
-						<div><?php echo $each['price']; ?></div>
-						<div><?php echo $each['manufactures_name'];?></div>
-						<div><?php echo $each['description'];?></div>
+					<div class="list_items products_view" onclick="viewpage(<?php echo $each['id'];?>)">
+						<div class="align_left"><?php echo $each['name']; ?></div>
+						<div class="align_center"><?php echo $each['price']; ?></div>
+						<div class="align_center"><?php echo $each['manufactures_name'];?></div>
+						<div class="align_center"><?php echo $each['description'];?></div>
 					</div>
 				<?php 	};	
 				break;
@@ -26,27 +26,27 @@
 					include 'order_parts/super_admin_out.php';
 				} else {
 					?>
-					<div class="list_items">
-						<div>Thông tin người đặt hàng</div>
-						<div>Thông tin người nhận hàng</div>
-						<div>Thời gian đặt hàng</div>
-						<div>Tình trạng</div>
+					<div class="list_items order_list">
+						<div class="align_center">Thông tin người đặt hàng</div>
+						<div class="align_center">Thông tin người nhận hàng</div>
+						<div class="align_center">Thời gian đặt hàng</div>
+						<div class="align_center">Tình trạng</div>
 					</div>
 					<?php 
 					foreach ($ket_qua as $each) {
 						?>
-						<div class="list_items">
-							<div>
+						<div class="list_items order_list">
+							<div class="align_left">
 								<?php echo "Tên: ".$each['name'];?><br>
 								<?php echo "Địa chỉ: ".$each['address'];?><br>
 								<?php echo "Số điện thoại: ".$each['phone']; ?>
 							</div>
-							<div>
+							<div class="align_left">
 								<?php echo "Tên người nhận: ".$each['receiver_name'];?><br>
 								<?php echo "Địa chỉ người nhận: ".$each['receiver_address'];?><br>
 								<?php echo "Số điện thoại người đặt: ".$each['receiver_phone']; ?>
 							</div>
-							<div><?php echo $each['order_time'];?></div>
+							<div class="align_center"><?php echo $each['order_time'];?></div>
 							<form action="order_parts/order_stat_change.php" method="POST">
 								<input type="text" name="order" hidden value="<?php echo $each['out_id']; ?>">
 								<select name="receipt_stat">

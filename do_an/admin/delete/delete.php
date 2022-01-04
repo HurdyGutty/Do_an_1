@@ -39,22 +39,22 @@ switch($link) {
 	case 'product':
 	?>
 	<div class="delete prod_d" id="main_list">
-		<div class="list_items">
-			<div>Tên sản phẩm</div>
-			<div>Giá sản phẩm</div>
-			<div>Nhà sản xuất</div>
-			<div>Mô tả</div>
+		<div class="list_items products_del">
+			<div class="align_center">Tên sản phẩm</div>
+			<div class="align_center">Giá sản phẩm</div>
+			<div class="align_center">Nhà sản xuất</div>
+			<div class="align_center">Mô tả</div>
 		</div>
 		<?php
 		foreach ($ket_qua as $each) {
 			?>
-			<form method="post" action="delete/process_delete_product.php" class="list_items">
+			<form method="post" action="delete/process_delete_product.php" class="list_items products_del">
 				<input type="hidden" name="id" value="<?php echo $each['id'];?>">
-				<div><?php echo $each['name']; ?></div>
-				<div><?php echo $each['price']; ?></div>
-				<div><?php echo $each['manufactures_name'];?></div>
-				<div><?php echo $each['description'];?></div>
-				<button type="submit">Xóa</button>
+				<div class="align_left"><?php echo $each['name']; ?></div>
+				<div class="align_center"><?php echo $each['price']; ?></div>
+				<div class="align_center"><?php echo $each['manufactures_name'];?></div>
+				<div class="align_center"><?php echo $each['description'];?></div>
+				<button type="submit" class="align_center">Xóa</button>
 			</form>
 		<?php 	}; ?>
 		<div id="page_list">
