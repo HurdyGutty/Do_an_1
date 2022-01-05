@@ -256,6 +256,29 @@
 		margin-left: 10px;
 		text-decoration: none;
 	}
+	.create {
+		color: var(--text-color-active);
+		background-color: var(--color-nav-hor-active);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.admin_c {
+		display: grid;
+		grid-gap: 0px;
+		grid-template-rows: 15vh 55vh 15vh;
+		align-items: center;
+	}
+	.create_title > h1 {
+		margin: 0px;
+	}
+	.admin_c > .create_body{
+		align-self: stretch;
+		display: grid;
+		grid-gap: 0px;
+		grid-template-columns: 30vw 56vw;
+		grid-template-rows: repeat(9, [row-start] 1fr [row-end]);
+	}
 	#footer{
 		background: var(--background-color);
 	}
