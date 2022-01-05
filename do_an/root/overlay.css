@@ -1,4 +1,5 @@
-  :root {
+
+	:root {
 		--color-nav-hor: limegreen;
 		--color-nav-hor-active: darkgreen;
 		--color-nav-ver: cyan;
@@ -20,26 +21,29 @@
 		grid-template-rows: 6vh 6vh 85vh 3vh;
 		background: var(--background-color)
 	}
-	#nav_ver{
+	#nav_panel{
 		grid-row: 1 / 5;
 		background: var(--background-color);
-		display: flex;
+		display: grid;
+		grid-gap: 0px;
+		grid-template-rows: 12vh 88vh;
+		grid-template-columns: 14vw;
 		justify-content: flex-start;
 		flex-direction: column;
 	}
-	#nav_ver ul{
+	#nav_panel ul{
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		flex-direction: column;
 		list-style-type: none;
-		margin: 5px 0px 0px 0px;
+		margin: 0px 0px 0px 0px;
 		padding:  0px;
 		width: 100%;
 	}
 	#nav_ver a{
 		width: 14vw;
-		height: 10vh;
+		height: 10.125vh;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -57,9 +61,10 @@
 		color: var(--text-color-active);
 		box-shadow: inset 0px 0px 13px 10px rgba(0, 0, 0, 0.3);
 	}
-	#nav_ver img{
-		width: 100%;
+	#nav_panel img{
+		height: 100%;
 		align-self: center;
+		justify-self: center;
 	}
 	#compartment{
 		background: var(--background-color);
@@ -166,6 +171,60 @@
 	}
 	.list_items:nth-child(even){
 		background: var(--color-nav-hor);
+	}
+	.products_view{
+		display: grid;
+		grid-gap: 0px;
+		grid-template-columns: 25vw 18vw 18vw 25vw;
+		justify-content: center;
+		align-items: center;
+	}
+	.products_view > div.align_center{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.products_view > div.align_left{
+		display: flex;
+		justify-content: left;
+		align-items: center;
+		padding-left: 3vw;
+	}
+	.products_del{
+		display: grid;
+		grid-gap: 0px;
+		grid-template-columns: 23vw 16vw 16vw 23vw 8vw;
+		justify-content: center;
+		align-items: center;
+	}
+	.products_del > div.align_center{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.products_del > div.align_left{
+		display: flex;
+		justify-content: left;
+		align-items: center;
+		padding-left: 3vw;
+	}
+	.order_list {
+		display: grid;
+		grid-gap: 0px;
+		grid-template-columns: 25vw 25vw 18vw 18vw;
+		justify-content: center;
+		align-items: center;
+	}
+	.order_list > div.align_left{
+		display: flex;
+		justify-content: left;
+		align-items: center;
+		padding-left: 3vw;
+	}
+	.order_list > div .align_center{
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	#page_list{
 		display: flex;
