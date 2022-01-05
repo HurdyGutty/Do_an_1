@@ -46,7 +46,7 @@
 								<?php echo "Địa chỉ người nhận: ".$each['receiver_address'];?><br>
 								<?php echo "Số điện thoại người đặt: ".$each['receiver_phone']; ?>
 							</div>
-							<div class="align_center"><?php echo $each['order_time'];?></div>
+							<div class="align_center"><?php echo date('H:i:s d/m/Y',strtotime($each['order_time']));?></div>
 							<form action="order_parts/order_stat_change.php" method="POST">
 								<input type="text" name="order" hidden value="<?php echo $each['out_id']; ?>">
 								<select name="receipt_stat">
@@ -69,20 +69,20 @@
 				case 'manufacturers':
 				if($_SESSION['access'] == 1) {
 					?>
-					<div class="list_items">
-						<div>Tên nhà sản xuất</div>
-						<div>Mô tả về nhà sản xuất</div>
-						<div>Số điện thoại</div>
-						<div>Địa chỉ</div>
+					<div class="list_items manufacturers_list">
+						<div class="align_center">Tên nhà sản xuất</div>
+						<div class="align_center">Mô tả về nhà sản xuất</div>
+						<div class="align_center">Số điện thoại</div>
+						<div class="align_center">Địa chỉ</div>
 					</div>
 					<?php 
 					foreach ($ket_qua as $each) {
 						?>
-						<div class="list_items" onclick="viewpage(<?php echo $each['id'];?>)">
-							<div><?php echo $each['name']; ?></div>
-							<div><?php echo $each['description']; ?></div>
-							<div><?php echo $each['phone'];?></div>
-							<div><?php echo $each['address'];?></div>
+						<div class="list_items manufacturers_list" onclick="viewpage(<?php echo $each['id'];?>)">
+							<div class="align_center"><?php echo $each['name']; ?></div>
+							<div class="align_left"><?php echo $each['description']; ?></div>
+							<div class="align_center"><?php echo $each['phone'];?></div>
+							<div class="align_center"><?php echo $each['address'];?></div>
 						</div>
 					<?php };
 				} else{header('location:logout.php');};
