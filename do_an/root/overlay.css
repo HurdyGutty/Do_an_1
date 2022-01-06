@@ -266,8 +266,14 @@
 	.admin_c {
 		display: grid;
 		grid-gap: 0px;
-		grid-template-rows: 15vh 55vh 15vh;
+		grid-template-rows: 15vh 57vh 13vh;
+		grid-template-columns: 35vw;
 		align-items: center;
+		justify-content: center;
+	}
+	.create_title {
+		display: flex;
+		justify-content: center;
 	}
 	.create_title > h1 {
 		margin: 0px;
@@ -276,8 +282,16 @@
 		align-self: stretch;
 		display: grid;
 		grid-gap: 0px;
-		grid-template-columns: 30vw 56vw;
-		grid-template-rows: repeat(9, [row-start] 1fr [row-end]);
+		grid-template-columns: 15vw 20vw;
+		grid-template-rows: repeat(9, [row-start] auto [row-end]);
+	}
+	.create_body > div > input,div {
+		width: 100%;
+	}
+	.create_button {
+		height: 100%;
+		padding-left: 15vw;
+		padding-top: 1vh;
 	}
 	#footer{
 		background: var(--background-color);
