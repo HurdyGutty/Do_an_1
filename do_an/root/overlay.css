@@ -266,10 +266,12 @@
 	.admin_c {
 		display: grid;
 		grid-gap: 0px;
-		grid-template-rows: 15vh 57vh 13vh;
-		grid-template-columns: 35vw;
+		grid-template-rows: 15vh 57vh 8vh;
+		grid-template-columns: 27vw;
 		align-items: center;
 		justify-content: center;
+		background-color: crimson;
+		border: 2px;
 	}
 	.create_title {
 		display: flex;
@@ -282,17 +284,55 @@
 		align-self: stretch;
 		display: grid;
 		grid-gap: 0px;
-		grid-template-columns: 15vw 20vw;
+		grid-template-columns: 12vw 15vw;
 		grid-template-rows: repeat(9, [row-start] auto [row-end]);
 	}
-	.create_body > div > input,div {
-		width: 100%;
+	.create_body > label {
+		padding-left: 2vw;
 	}
 	.create_button {
 		height: 100%;
-		padding-left: 15vw;
+		padding-left: 12vw;
 		padding-top: 1vh;
 	}
+	.manu_c {
+		display: grid;
+		grid-gap: 0px;
+		grid-template-rows: 15vh 48vh 8vh;
+		grid-template-columns: 32vw;
+		align-items: center;
+		justify-content: center;
+		background-color: crimson;
+		border: 2px;
+	}
+	.manu_c > .create_body{
+		align-self: stretch;
+		display: grid;
+		grid-gap: 0px;
+		grid-template-columns: 12vw 20vw;
+		grid-template-rows: repeat(5, [row-start] auto [row-end]);
+	}
+	.create_body > div > input{
+		width: 90%;
+	}
+	.product_c {
+		display: grid;
+		grid-gap: 0px;
+		grid-template-rows: 15vh 57vh 8vh;
+		grid-template-columns: 32vw;
+		align-items: center;
+		justify-content: center;
+		background-color: crimson;
+		border: 2px;
+	}
+	.product_c > .create_body{
+		align-self: stretch;
+		display: grid;
+		grid-gap: 0px;
+		grid-template-columns: 12vw 20vw;
+		grid-template-rows: repeat(8, [row-start] auto [row-end]);
+	}
+
 	#footer{
 		background: var(--background-color);
 	}
