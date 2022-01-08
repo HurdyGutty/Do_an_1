@@ -54,7 +54,7 @@
 				<label>Mật khẩu:</label>
 				<div>
 					<input type="text" name="password">
-					<div class="email_error">
+					<div class="password_error">
 					</div>
 				</div>
 				<label>Vị trí:</label>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 			<div class="create_button">
-				<button type="submit">Thêm nhân viên</button>
+				<button type="submit" class="submit_form">Thêm nhân viên</button>
 			</div>
 		</form>
 	</div>
@@ -107,7 +107,7 @@
 				</div>
 			</div>
 			<div class="create_button">
-				<button type="submit">Thêm nhà sản xuất</button>
+				<button type="submit" class="submit_form">Thêm nhà sản xuất</button>
 			</div>
 		</form>
 	</div>
@@ -166,7 +166,7 @@
 				<label>Số lượng: </label>
 				<div>
 					<input type="number" name="quantity">
-					<div class="quantity"></div>
+					<div class="quantity_error"></div>
 				</div>
 				<label>Link ảnh: </label>
 				<div>
@@ -180,7 +180,7 @@
 				</div>
 			</div>
 			<div class="create_button">
-				<button type="submit">Thêm sản phẩm</button>
+				<button type="submit" class="submit_form">Thêm sản phẩm</button>
 			</div>
 		</form>
 	</div>
