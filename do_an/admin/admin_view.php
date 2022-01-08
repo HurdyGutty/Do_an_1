@@ -182,7 +182,15 @@
 						}?>
 			xhttp.send();
 		}
-		<?php if ($tool === 'create'){include 'javascript/js_validate.php';}?>
+		<?php if ($tool === 'create'){
+			switch ($link) {
+				case 'admin':
+					include 'javascript/js_validate_admin.php';
+				case 'manufacturers':
+					include 'javascript/js_validate_manufacturers.php';
+				case 'product':
+					include 'javascript/js_validate_product.php';
+		}}?>
 	</script>
 </body>
 </html>
