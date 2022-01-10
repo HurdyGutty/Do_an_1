@@ -148,6 +148,43 @@
 		color: var(--text-color-active);
 		text-decoration: none;
 	}
+	.denied_page{
+		grid-area: 1 / 1 / 3/ 5;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: indianred;
+		align-self: center;
+	}
+	#info_page {
+		grid-area: 1 / 1 / last-line/ last-line ;
+		place-self:  stretch stretch;
+		background-color: crimson;
+		display: grid;
+		grid-gap: 0px;
+		grid-template-rows: 5fr 3fr;
+	}
+	#adm_photo{
+		place-self: center center;
+		height: 43vh;
+	}
+	#detail_info{
+		place-self: start center;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		padding-left: 2vw;
+		padding-right: 2vw;
+	}
+	#detail_info > p{
+		margin: 1vh 0px;
+	}
+	#detail_info > button{
+		margin-top: 1vh;
+		align-self: center;
+	}
 	#main_list{
 		background: var(--color-nav-hor-active);
 		display: grid;
