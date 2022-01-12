@@ -158,25 +158,41 @@
 		align-self: center;
 	}
 	#info_page {
-		grid-area: 1 / 1 / last-line/ last-line ;
+		grid-area: 1 / 2 / last-line/ 4 ;
 		place-self:  stretch stretch;
-		background-color: crimson;
+		background-color: #d3d3d3;
 		display: grid;
 		grid-gap: 0px;
 		grid-template-rows: 5fr 3fr;
 	}
 	#adm_photo{
 		place-self: center center;
-		height: 43vh;
+		height: 42vh;
 	}
 	#detail_info{
 		place-self: start center;
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		justify-content: flex-start;
 		padding-left: 2vw;
 		padding-right: 2vw;
+	}
+	#fix_info{
+		height: 100%;
+		place-self: start center;
+		display:  grid;
+		grid-gap: 0px;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(6, 1fr);
+		align-items: center;
+		justify-items: start;
+	}
+	#fix_info > p {
+		margin: 1vh 0px;
+	}
+	#fix_info > button {
+		grid-column-start: 1;
+		grid-column-end: 3;
+		justify-self: center;
 	}
 	#detail_info > p{
 		margin: 1vh 0px;
