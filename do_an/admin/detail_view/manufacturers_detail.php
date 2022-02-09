@@ -57,17 +57,49 @@ echo 				"<div class='manufactures_info_detail_products_list_rows'>
 					</div>";
 				}
 echo		"</div>";
-	$order_by = "number_week DESC, number_month"
-	$stmt_week = $ket_noi->prepare($qry_list)
+	$order_by = "number_week DESC, number_month";
+	$stmt_week = $ket_noi->prepare($qry_list);
 	$stmt_week->bind_param("iii", $week, $month, $limit);
 	$week = 7;
 	$month = 30;
-	$limit = 10;
+	$limit = 5;
 	$stmt_week->execute();
 	$result_week = $stmt_week->get_result();
 	$data_week = $result_week->fetch_all(MYSQLI_ASSOC);
-echo 		"<div><canvas id=\"week_chart\" style=\"width:100%;max-width:600px\"></canvas></div>";
-echo 		"<div><canvas id=\"month_chart\" style=\"width:100%;max-width:600px\"></canvas></div>";
+echo 		"<div class='div_graph'><canvas id=\"week_chart\" style=\"width:100%;max-width:600px\"></canvas></div>";
+	$order_by = "number_month";
+	$stmt_month = $ket_noi->prepare($qry_list);
+	$stmt_month->bind_param("iii", $week, $month, $limit);
+	$week = 7;
+	$month = 30;
+	$limit = 5;
+	$stmt_month->execute();
+	$result_month = $stmt_month->get_result();
+	$data_month = $result_month->fetch_all(MYSQLI_ASSOC);
+echo 		"<div class='div_graph'><canvas id=\"month_chart\" style=\"width:100%;max-width:600px\"></canvas></div>";
 echo 	"</div>";
 echo "</div>";
+echo "<script type=\"text/javascript\" id='graph_data'>";
+		$x_week_array = array();
+		$y_week_array = array();
+		foreach ($data_week as $row) {
+			array_push($x_week_array,$row["name"]);
+			array_push($y_week_array,$row["number_week"]);
+		}
+		$x_week_json = json_encode($x_week_array);
+		$y_week_json = json_encode($y_week_array);
+		echo "var x_values_week = ". $x_week_json . ";\n";
+		echo "var y_values_week = ". $y_week_json . ";\n";
+
+		$x_month_array = array();
+		$y_month_array = array();
+		foreach ($data_month as $row) {
+			array_push($x_month_array,$row["name"]);
+			array_push($y_month_array,$row["number_month"]);
+		}
+		$x_month_json = json_encode($x_month_array);
+		$y_month_json = json_encode($y_month_array);
+		echo "var x_values_month = ". $x_month_json . ";\n";
+		echo "var y_values_month = ". $y_month_json . ";\n";
+echo		"</script>";
 mysqli_close($ket_noi);
