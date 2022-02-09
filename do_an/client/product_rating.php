@@ -66,7 +66,7 @@ foreach($resReviews as $key=>$item){
                 <form id="rating-form" action="#">
                     <header class="rating-header"></header>
                     <div class="textarea">
-                        <textarea cols="30" id="rate-comment" placeholder="Describe your experience....."></textarea>
+                        <textarea cols="30" id="rate-comment" placeholder="Describe your experience....." maxlength="500"></textarea>
                     </div>
                     <div class="rating-btn">
                         <button id="rating-btn"type="submit">Post</button>
