@@ -8,7 +8,6 @@ $resRating=mysqli_fetch_assoc($resRating);
 echo "<script> window.onload=()=>{
     RateDisplayProduct($resRating[avgR])
 }</script>";
-
 $sql="SELECT products_rating.*,cli_list.name,cli_list.id
 FROM `products_rating`
 JOIN cli_list ON cli_list.id=products_rating.id_customer
@@ -27,6 +26,7 @@ foreach($resReviews as $key=>$item){
                 }</script>"; 
     }
 }
+if($resRating['avgR']==NULL) $resRating['avgR']=0;
 ?>
 <head>
         <meta charset="utf-8">
