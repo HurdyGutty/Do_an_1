@@ -8,6 +8,8 @@
     <title>Product</title>
     <link rel="stylesheet" href="asset/product.css">
     <link rel="icon" href="public/icongame.jpg" type="image/.jpg">
+    <link rel="stylesheet" href="font-awesome.min.css">
+
 </head>
 <body>
     <?php
@@ -88,13 +90,16 @@
                 <div class="des_price">Giá: <?php             
                 echo  number_format($item['price'])."VNĐ";?></div>
             </div>
-            <div class="quantity"> Còn hàng: <?php echo $item['quantity']?> sản phẩm</div>
+            <div class="quantity">Tình trạng:  <?php if ( $item['quantity'] > 0) echo " Còn hàng"; else echo "Hết hàng"?></div>
             <div class="add_to_cart linked">
                 ADD TO CART
                 <a id="add-to-cart" href="#" datalink="./api/addproduct.php?id=<?php echo $item['id']?>"></a>
             </div>
         </div>
     </div>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="js/notify.js"> </script>
+
     <script src="js/product.js"> </script>
     <?php include "./product_rating.php"?>
     <div class="cate">
@@ -104,7 +109,6 @@
         </div>
         <div class="cate_itemLR"></div>
     </div>
-    
     
 </body>
 </html>

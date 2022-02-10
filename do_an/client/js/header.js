@@ -1,6 +1,8 @@
 var buttonSearch=document.querySelector("#search_form_button");
 var drop_list=document.querySelectorAll(" .header_drop-list-item")
-const $=document.querySelector.bind(document)
+var $=document.querySelector.bind(document)
+var $1=document.querySelector.bind(document)
+
 drop_list.forEach(ele=>{
     ele.onclick=async(e)=>{
        //e.preventDefault();
@@ -27,11 +29,11 @@ buttonSearch.onclick=(e)=>{
    
 }
 // live search
-$("#search").onkeyup=(e)=>{
+$1("#search").onkeyup=(e)=>{
     const in4=e.target.value.trim();
    // console.log(e.target.value)
     if(in4=="") {
-        $(".list_suggestion").innerHTML="";
+        $1(".list_suggestion").innerHTML="";
         return;
     }
     fetch("./api/livesearch.php",{
@@ -45,9 +47,9 @@ $("#search").onkeyup=(e)=>{
     .then(i=>i.json())
     .then(data=>{
        // console.log(data);
-        $(".list_suggestion").innerHTML="";
+        $1(".list_suggestion").innerHTML="";
         for (let i=0;i<data.length;i++){
-            $(".list_suggestion").innerHTML+=`
+            $1(".list_suggestion").innerHTML+=`
             <div class="list_suggestion-item linked">
                     <img src="${data[i].photo}" alt="" >
                     <div class="list_suggestion-item-text">${data[i].name}</div>
@@ -60,16 +62,16 @@ $("#search").onkeyup=(e)=>{
 
 // mobile
 let timerMenu;
-const menu=$(".menu")
+const menu=$1(".menu")
 if(menu){
     menu.onclick=()=>{
-        $(".menu_wrapper_con").style.animation="slideShow linear 0.2s"
-        $(".menu_wrapper").style.display="block";
-        $(".menu_close").onclick=()=>{
+        $1(".menu_wrapper_con").style.animation="slideShow linear 0.2s"
+        $1(".menu_wrapper").style.display="block";
+        $1(".menu_close").onclick=()=>{
             clearTimeout(timerMenu)
-            $(".menu_wrapper_con").style.animation="slideHide linear 0.2s"
+            $1(".menu_wrapper_con").style.animation="slideHide linear 0.2s"
             timerMenu=setTimeout(()=>{
-            $(".menu_wrapper").style.display="none"
+            $1(".menu_wrapper").style.display="none"
             },180)
         }
     }

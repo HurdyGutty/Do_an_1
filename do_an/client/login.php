@@ -22,7 +22,9 @@ if (Authenticate()){
         <div class="intro">
             <div class="intro_overlay">
                 <div class="intro_container">
-                    <div class="intro_title">H&N SHOP</div>
+                    <div class="intro_title linked">H&N SHOP
+                        <a href="./"></a>
+                    </div>
                     <div class="intro_description"></div>
                     <div class="intro_text_sociallogin">Login with social media</div>
                     <div class="intro_sociallogin">
@@ -38,7 +40,7 @@ if (Authenticate()){
                 <div class="loginform_title">Login</div>
                 <div class="loginform_instruct">
                     Don't have an account? 
-                    <a href="./signup.php"class="signup">Creat Your Account</a> it takes less than a minute
+                    <a href="./signup.php"class="signup">Create Your Account</a> it takes less than a minute
                 </div>
                 <div id="warning_signin">
                 <?php

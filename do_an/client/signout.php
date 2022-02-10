@@ -9,9 +9,10 @@ if(isset($_SESSION['cart'])) {
     unset($_SESSION['cart']);
    // setcookie('quantity','', time()-2000,'/'); 
 }
-if(isset($_SESSION)) {
-    unset($_SESSION);
+if(isset($_SESSION['quantity'])) {
+    unset($_SESSION['quantity']);
    // setcookie('quantity','', time()-2000,'/'); 
 }
+unset($_SESSION);
 header("Location: ./");
 ?>

@@ -47,6 +47,7 @@
             <div class="c-4 m-4 l-4 col">
                 <div class="product-name linked">
                 <?php echo $item['name'] ?>
+                <a href="./product.php?id=<?php echo $key?>"></a>
                 </div>
                 <div class="product-co-size-del">
                         <div class="color">Màu: Đen</div>
@@ -56,7 +57,7 @@
 
             </div>
             <div class="quantity c-2 m-2 l-2 col">
-                <input key="<?php echo $key?>" id="quantity" autocomplete="off"  type="number" min="0" max="1000" value="<?php echo $item['quantity'] ?>">
+                <input key="<?php echo $key?>" id="quantity" autocomplete="off"  type="number" min="0" max="10"  value="<?php echo $item['quantity'] ?>" step="1">
             </div>
             <div class="one-price c-2 m-2 l-2 col"><?php echo number_format($item['price']) ?> ₫</div>
             <div class="sum-price c-2 m-2 l-2 col"><?php echo number_format($item['price']*$item['quantity']); $sum+=$item['price']*$item['quantity'] ?> ₫</div>

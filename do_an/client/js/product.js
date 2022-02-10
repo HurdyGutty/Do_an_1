@@ -5,7 +5,18 @@ item.onclick= async (e)=>{
     e.preventDefault();
     await fetch(item.attributes.datalink.value)
     .then(response => response.json())
-    .then(data => console.log(data));
-    countQuantity++;
-    tagQuantity.textContent=countQuantity;
+    .then(data => {
+        if(data==0){
+            $.notify.defaults({ className: "error" });
+            $.notify("Vui lòng đặt số lượng ít hơn 10 mỗi sản phẩm",{position:"right bottom" });
+        }
+        else{
+            countQuantity++;
+            tagQuantity.textContent=countQuantity;
+            $.notify.defaults({ className: "success" });
+            $.notify("Đã thêm vào giỏ hàng",{position:"right bottom" });
+        }
+        
+    });
+    
 }

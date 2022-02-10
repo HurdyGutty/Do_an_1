@@ -7,6 +7,10 @@
     }
     $id=addslashes($_GET['id']);
     if(isset($_SESSION['cart'][$id]['quantity'])){
+        if($_SESSION['cart'][$id]['quantity'] >= 10)  {
+            echo json_encode(0);
+            exit;
+        }
         $_SESSION['cart'][$id]['quantity']+=1;
     }
     else {

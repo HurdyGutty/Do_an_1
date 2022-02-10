@@ -4,6 +4,7 @@ require "start.php";
 function Authenticate(){
     if(isset($_SESSION['id']) && !isset($_SESSION['access'])) return true;
     if(isset($_SESSION['access'])) unset($_SESSION['access']);
+    if(isset($_SESSION['id'])) unset($_SESSION['id']);
     if (isset($_COOKIE['token'])){
         require "connect.php";
         $sql="select * from cli_list

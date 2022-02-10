@@ -1,13 +1,10 @@
 const $$=document.querySelectorAll.bind(document)
-const btn = $("#rating-btn");
-const post = $(".rating-post");
-const widget = $(".star-widget");
-const editBtn = $(".rating-edit")
-const warning=$(".rating-message")
+const btn = $1("#rating-btn");
+const post = $1(".rating-post");
+const widget = $1(".star-widget");
+const editBtn = $1(".rating-edit")
+const warning=$1(".rating-message")
 console.log(id_pro);
-
-
-
 btn.onclick = (e)=>{
     e.preventDefault();
     let inputArr=$$(".rating-input");
@@ -19,7 +16,8 @@ btn.onclick = (e)=>{
       }
   }
     console.log(rateIndex)
-    const text=$("#rate-comment").value
+    const text=$1("#rate-comment").value
+    console.log(text)
     fetch("./api/product_rating.php",{
         headers: {
                 'Accept': 'application/json, text/plain, */*',

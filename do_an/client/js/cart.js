@@ -13,10 +13,16 @@ dltButton.forEach(button=>{
 for (let i=0;i<input.length;i++){
     input[i].onchange=(e)=>{
         let key=e.target.attributes.key.value;
+        e.target.value=Math.floor(e.target.value);
         let quantity=e.target.value;
-        if(quantity > 1000|| quantity.length > 3 ) {
+        if(quantity > 10|| quantity.length > 3 ) {
             console.log(quantity)
+            e.target.value=10;
             return;
+        }
+        if(quantity < 0){
+            e.target.value=0;
+            quantity=0;
         }
         updateProductCart(key,quantity);
         console.log(key);
@@ -35,7 +41,7 @@ async function updateProductCart(key,quantity){
                 method: "POST",
                 body: `id=${key}&quantity=${quantity}`
         })
-        .then(() =>{
+        .then(()=>{
             var par=document.getElementById(key);
             var length=par.childElementCount;
             let price=formattonumber(par.children[length-3].textContent);

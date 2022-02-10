@@ -117,7 +117,15 @@ $deli_fee=20000;
     <div class="payment_sucess_wrap hidden">
         <div class="payment_sucess">
             <h2>Thanh toán thành công!</h2>
-            <a href="./">Quay về HOME</a>
+            <h4 >
+            <a href="./">Về trang chủ</a>
+              </h4>
+           
+            <h4 >
+            <a href="./account.php?view=list-order">Xem đơn hàng</a>
+              </h4>
+           
+
         </div>
     </div>
     <script src="./js/payment.js"></script>
