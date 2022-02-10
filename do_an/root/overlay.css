@@ -273,6 +273,7 @@
 		background: green;
 		padding: 2vh;
 		justify-items: center;
+		align-self: stretch;
 	}
 	#manufactures_info_detail_products_list{
 		grid-column: 1 / last-line;
@@ -320,6 +321,9 @@
 		background-color: whitesmoke;
 		justify-self: stretch;
 		align-self: stretch;
+		display: flex;
+		justify-content: safe center;
+		align-items: stretch;
 	}
 	#product_info_column{
 		display: grid;
@@ -370,6 +374,15 @@
 		justify-self: center;
 		align-self: center;
 		width:  10vw;
+	}
+	#products_right_detail_panel {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+		grid-gap: 2vh;
+		justify-self: stretch;
+		background: green;
+		padding: 2vh;
+		justify-items: center;
 	}
 	#main_list{
 		background: var(--color-nav-hor-active);
