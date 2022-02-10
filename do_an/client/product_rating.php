@@ -8,7 +8,6 @@ $resRating=mysqli_fetch_assoc($resRating);
 echo "<script> window.onload=()=>{
     RateDisplayProduct($resRating[avgR])
 }</script>";
-
 $sql="SELECT products_rating.*,cli_list.name,cli_list.id
 FROM `products_rating`
 JOIN cli_list ON cli_list.id=products_rating.id_customer
@@ -21,11 +20,13 @@ foreach($resReviews as $key=>$item){
         $resReviews[0]=$item;
         $resReviews[$key]=$temp;
         echo"<script> window.onload=()=>{
+                 oldRate=$item[rating];
                 sucessRating();
                 RateDisplayProduct($resRating[avgR]);
                 }</script>"; 
     }
 }
+if($resRating['avgR']==NULL) $resRating['avgR']=0;
 ?>
 <head>
         <meta charset="utf-8">
@@ -44,7 +45,7 @@ foreach($resReviews as $key=>$item){
                     <label class="fas fa-star  display-rating"></label>
                     <label class="fas fa-star  display-rating"></label>
         </div>
-        <div class="total-ratings"><?php echo round($resRating['avgR'],2).'* , '.$resRating['countR']?> lượt đánh giá</div>
+        <div class="total-ratings"><?php echo round($resRating['avgR'],2).'* , '.$resRating['countR']; echo "<script> var avgR=$resRating[avgR],countR=$resRating[countR] </script>";?> lượt đánh giá</div>
       <div class="rating-message"></div>
       <div class="rating__wrapper">
         <div class="rating__container">
@@ -66,7 +67,7 @@ foreach($resReviews as $key=>$item){
                 <form id="rating-form" action="#">
                     <header class="rating-header"></header>
                     <div class="textarea">
-                        <textarea cols="30" id="rate-comment" placeholder="Describe your experience....."></textarea>
+                        <textarea cols="30" id="rate-comment" placeholder="Describe your experience....." maxlength="500"></textarea>
                     </div>
                     <div class="rating-btn">
                         <button id="rating-btn"type="submit">Post</button>

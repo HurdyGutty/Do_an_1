@@ -140,7 +140,11 @@
 			}
 				switch ($link){
 					case 'product':
-						echo "";
+						echo "var script = document.createElement(\"script\");
+    							script.type = \"text/javascript\";
+    							script.src = \"javascript/graph_product.js.\"; 
+    							document.getElementsByTagName(\"body\")[0].appendChild(script);
+    							return false;";
 						break;
 					case 'manufacturers':
 						echo "var script = document.createElement(\"script\");
