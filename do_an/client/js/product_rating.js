@@ -108,8 +108,8 @@ function updateNewRateIndex(type,rate){
     oldRate=Number(oldRate)
     rate=Number(rate)
     if(type==0){
-        countR++;
-        avgR=(avgR*countR+rate)/countR
+        avgR=(avgR*countR+rate)/(countR+1)
+        countR++
     }
     else{
         avgR=(avgR*countR+rate-oldRate)/countR;

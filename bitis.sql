@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2022 at 05:46 AM
+-- Generation Time: Feb 10, 2022 at 05:12 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `cli_forgot` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_forgot`),
   KEY `FK_cli_forgot` (`cli_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cli_forgot`
@@ -86,7 +86,14 @@ INSERT INTO `cli_forgot` (`id_forgot`, `cli_id`, `code`, `created_at`) VALUES
 (28, 14, '0c459500', '2022-01-28 15:54:52'),
 (29, 14, 'e263c0a2', '2022-01-28 15:56:31'),
 (30, 14, '71257287', '2022-01-29 10:43:00'),
-(31, 14, '581f3d62', '2022-01-29 10:43:27');
+(31, 14, '581f3d62', '2022-01-29 10:43:27'),
+(32, 14, '60ad29b7', '2022-02-01 03:02:31'),
+(33, 14, '521c4bf7', '2022-02-01 03:08:38'),
+(41, 39, '3a7ebee0', '2022-02-01 05:18:34'),
+(42, 39, '124d6a1c', '2022-02-01 05:19:23'),
+(43, 40, '3f3b7d08', '2022-02-01 05:36:56'),
+(44, 39, 'f7340193', '2022-02-05 05:53:51'),
+(45, 14, '7556b155', '2022-02-10 04:30:48');
 
 -- --------------------------------------------------------
 
@@ -107,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `cli_list` (
   `birthday` date DEFAULT NULL,
   `token` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `cli_list`
@@ -115,11 +122,14 @@ CREATE TABLE IF NOT EXISTS `cli_list` (
 
 INSERT INTO `cli_list` (`id`, `name`, `gender`, `address`, `email`, `phone`, `photo`, `password`, `birthday`, `token`) VALUES
 (5, 'Lokiss', b'00', 'no', '2@2', '12', 'no', '', '2021-12-10', '695bcb9f1897e98235f64704a06753b31640178666'),
-(14, 'Đỗ Khải Hưng', b'00', 'Đông Hòa, Tỉnh Phú Yên', 'dokhaihung2003@gmail.com', '03676', '', '$2y$10$PIXrCXw1DhWdP7xQSysVe.qajoX2.XefrLmeToOkwESCLxepAmX1a', '2003-10-09', '7b335cfbc604f31971292f61be43f7e81642304618'),
+(14, 'Đỗ Khải Hưng', b'00', 'Đông Hòa, Tỉnh Phú Yên', 'dokhaihung2003@gmail.com', '03676', '', '$2y$10$KJTwsIbzpRfCaGQz8dbMqOdYO9ErnOtL4WWSaQa8F6VYl73EW3mpK', '2003-10-09', '7b335cfbc604f31971292f61be43f7e81642304618'),
 (15, '4', b'01', '56', 'dokhaihung2003@gmail.com22', '2', '', '$2y$10$04FOKbl86y9Vg.qOIv1YGuFxbt7h4PqrRmwYtzhZTYL6RPLCl8kZ', '2022-01-11', NULL),
 (16, '1', b'01', '', '1@21', '03676', '', '$2y$10$jqeudVyf33Kzm8XSJ6p84uNaeQYVHYYdLjPt6L1hc.JS6RfVL7h82', '2022-01-26', NULL),
-(17, '1', b'01', '', '1@1', '1', '', '$2y$10$9Ba2RbA9l/d4cHk8SvzIgeGtd35oB3.8xlhw1cuC19xxVxVIjbqIS', NULL, 'f6eb3fe5a092472bb66a3351b75427211642246460'),
-(18, 'Nguyễn Thanh Đăng', b'00', 'Kim Nổ huyện Dung Boom, Thành phố Hà Nội', 'phuongnguyendung2003@gmail.com', '0375578569', '', '$2y$10$AU53URPldBOPPMqjIrhc9eb9ARfsi8AZWS1t8YwtDUcXJ9L1vqD4C', '2003-07-18', 'd88bf9c5fe73e5dd545909e4f35e25081642432171');
+(17, '1', b'01', '', '1@1', '1', '', '$2y$10$9Ba2RbA9l/d4cHk8SvzIgeGtd35oB3.8xlhw1cuC19xxVxVIjbqIS', NULL, '9c03d67f9f175cc29545f75010d6c0361644381523'),
+(18, 'Nguyễn Thanh Đăng', b'00', 'Kim Nổ huyện Dung Boom, Thành phố Hà Nội', 'phuongnguyendung2003@gmail.com', '0375578569', '', '$2y$10$AU53URPldBOPPMqjIrhc9eb9ARfsi8AZWS1t8YwtDUcXJ9L1vqD4C', '2003-07-18', 'd88bf9c5fe73e5dd545909e4f35e25081642432171'),
+(39, 'Hưng', b'01', '', 'hungkhaido2003@gmail.com', '123456', '', '$2y$10$4vhqjgej0/YhLwCLwXqOc.PbhYdVjLgAO9QS6D4tri6RBBIQDb0u2', NULL, NULL),
+(40, '1', b'01', '', '1@7', '1', '', '$2y$10$GldjsIci7awbFYoicoPPV.25mtRf9AhB75C6H.5g2dHKar6XuNR1S', NULL, NULL),
+(41, '1', b'01', '', '4@4', '1', '', '$2y$10$YRYD..LoRwY846FU7D2KEOxsneMKaOrThDxpVxLMuPGV0l17A8jaK', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -183,7 +193,17 @@ INSERT INTO `out_list` (`id`, `client_id`, `order_time`, `receiver_name`, `recei
 (13, 14, '2022-01-17 15:03:14', 'Nguyễn Phương  Dung', '0375578561', '1, Xã Kim Nỗ , Huyện Đông Anh , Thành phố Hà Nội ', ''),
 (14, 18, '2022-01-17 15:13:51', 'Linh', '0000000000', ', Xã Kim Chung , Huyện Đông Anh , Thành phố Hà Nội ', ''),
 (15, 14, '2022-01-18 07:27:37', 'dokhaihung', '0367634196', ', Xã Xuân Giang , Huyện Sóc Sơn , Thành phố Hà Nội ', ''),
-(16, 18, '2022-01-21 05:18:09', 'dokhaihungC  ', '0123456555', ', Xã Cam Đường , Thành phố Lào Cai , Tỉnh Lào Cai ', '');
+(16, 18, '2022-01-21 05:18:09', 'dokhaihungC  ', '0123456555', ', Xã Cam Đường , Thành phố Lào Cai , Tỉnh Lào Cai ', ''),
+(17, 14, '2022-01-31 05:51:22', 'Nguyễn Văn A', '0123456789', 'khu A, Thị trấn Bố Hạ , Huyện Yên Thế , Tỉnh Bắc Giang ', ''),
+(18, 17, '2022-02-05 06:11:09', '1', '0367634444', ', Xã Nghĩa Lộ , Huyện Cát Hải , Thành phố Hải Phòng ', ''),
+(19, 17, '2022-02-05 06:11:52', 'dokhaihung', '0367634777', ', Phường Khắc Niệm , Thành phố Bắc Ninh , Tỉnh Bắc Ninh ', ''),
+(20, 17, '2022-02-05 06:12:41', 'dokhaihungC  ', '0367634444', '1, Xã Mộ Đạo , Huyện Quế Võ , Tỉnh Bắc Ninh ', ''),
+(21, 17, '2022-02-05 06:15:09', 'dokhaihungC  ', '0367634111', ', Phường Hùng Vương , Thành phố Phúc Yên , Tỉnh Vĩnh Phúc ', ''),
+(22, 17, '2022-02-08 17:49:03', 'dokhaihung', '0367634111', ', Phường Đồng Lạc , Thành phố Chí Linh , Tỉnh Hải Dương ', ''),
+(23, 17, '2022-02-10 04:27:09', 'dokhaihung', '0123456222', ', Xã Bình Phú , Huyện Phù Ninh , Tỉnh Phú Thọ ', ''),
+(24, 17, '2022-02-10 04:33:54', '1', '01234562342', ', Phường Hạp Lĩnh , Thành phố Bắc Ninh , Tỉnh Bắc Ninh ', ''),
+(25, 17, '2022-02-10 04:36:33', 'dkh', '0367634196', '12, Phường Trưng Nhị , Thành phố Phúc Yên , Tỉnh Vĩnh Phúc ', ''),
+(26, 17, '2022-02-10 04:38:13', 'hnsneakershop', '0000000123', '111, Xã Hưng Nhân , Huyện Vĩnh Bảo , Thành phố Hải Phòng ', '');
 
 -- --------------------------------------------------------
 
@@ -227,7 +247,26 @@ INSERT INTO `out_product` (`out_id`, `product_id`, `quantity`) VALUES
 (15, 25, 1),
 (16, 8, 9),
 (16, 11, 10),
-(16, 34, 4);
+(16, 34, 4),
+(17, 7, 3),
+(17, 9, 1),
+(17, 23, 5),
+(17, 31, 2),
+(18, 9, 3),
+(19, 9, 1),
+(20, 25, 1),
+(21, 8, 1),
+(22, 8, 3),
+(23, 14, 2),
+(23, 29, 2),
+(24, 8, 1),
+(24, 9, 1),
+(24, 15, 1),
+(24, 21, 1),
+(25, 11, 1),
+(26, 24, 10),
+(26, 25, 7),
+(26, 27, 10);
 
 -- --------------------------------------------------------
 
@@ -356,13 +395,32 @@ CREATE TABLE IF NOT EXISTS `products_rating` (
 --
 
 INSERT INTO `products_rating` (`id_product`, `id_customer`, `rating`, `comment`) VALUES
+(6, 16, 3, 'á hi hì haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(10, 17, 5, ''),
+(11, 17, 4, ''),
 (12, 5, 3, 'Good That\'s great'),
 (12, 14, 5, ''),
+(12, 17, 2, ''),
 (12, 18, 2, 'kkkkssssk'),
+(12, 39, 1, 'gud job\n'),
+(13, 39, 5, ''),
 (14, 14, 3, 'h'),
+(14, 17, 3, '11111121d51s1dsada'),
+(15, 17, 5, 'class component react\n\nCó 519,564 kết quả.\nComponents and Props – React - reactjs.org\nhttps://reactjs.org/docs/components-and-props.html\n\nComponents let you split the UI into independent, reusable pieces, and think about each piece in isolation.\nReact.Component – React - reactjs.org\nhttps://reactjs.org/docs/react-component.html\n\nThis page contains a detailed API reference for the React component class definition. It assumes you’re familiar with fundamental React concepts, such as Components and'),
+(18, 17, 5, 'hicccccc'),
+(22, 17, 5, ''),
 (23, 14, 4, 'Giày nhìn hơi cũ '),
+(23, 17, 5, ''),
+(23, 39, 5, 'hú'),
+(24, 17, 3, ''),
 (28, 14, 5, ''),
-(29, 14, 2, NULL);
+(28, 17, 3, ''),
+(29, 14, 2, NULL),
+(29, 17, 5, ''),
+(30, 17, 2, ''),
+(31, 14, 5, ''),
+(31, 17, 5, ''),
+(33, 17, 4, '');
 
 -- --------------------------------------------------------
 
@@ -395,8 +453,18 @@ INSERT INTO `receipt_history` (`out_id`, `adm_id`, `receipt_stat`, `work_time`) 
 (12, NULL, 'Đã hủy', NULL),
 (13, NULL, 'Đã hủy', NULL),
 (14, NULL, 'Mới', NULL),
-(15, NULL, 'Mới', NULL),
-(16, NULL, 'Đã duyệt', NULL);
+(15, NULL, 'Đã hủy', NULL),
+(16, NULL, 'Đã duyệt', NULL),
+(17, NULL, 'Mới', NULL),
+(18, NULL, 'Mới', NULL),
+(19, NULL, 'Mới', NULL),
+(20, NULL, 'Đã hủy', NULL),
+(21, NULL, 'Đã hủy', NULL),
+(22, NULL, 'Mới', NULL),
+(23, NULL, 'Mới', NULL),
+(24, NULL, 'Mới', NULL),
+(25, NULL, 'Mới', NULL),
+(26, NULL, 'Mới', NULL);
 
 --
 -- Constraints for dumped tables
