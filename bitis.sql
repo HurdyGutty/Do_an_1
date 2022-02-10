@@ -346,7 +346,7 @@ CREATE TABLE IF NOT EXISTS `products_rating` (
   `id_product` int(11) NOT NULL,
   `id_customer` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
-  `comment` text,
+  `comment` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_product`,`id_customer`),
   KEY `FK_rating_client` (`id_customer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

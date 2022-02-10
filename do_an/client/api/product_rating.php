@@ -15,6 +15,10 @@
         ON DUPLICATE KEY UPDATE `comment` = '$text',`rating`='$rate'";
      //   die($sql);
     $temp=mysqli_query($connect,$sql);
+    if(mysqli_error($connect)) exit;
+    $sql="SELECT cli_list.name FROM `cli_list` WHERE `id`='$id_cli' ";
+    $res=mysqli_query($connect,$sql);
+    $res=$res->fetch_assoc();
+    echo json_encode($res);
     mysqli_close($connect);
-    echo json_encode(1);
 ?>
