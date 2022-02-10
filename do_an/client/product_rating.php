@@ -21,6 +21,7 @@ foreach($resReviews as $key=>$item){
         $resReviews[0]=$item;
         $resReviews[$key]=$temp;
         echo"<script> window.onload=()=>{
+                 oldRate=$item[rating];
                 sucessRating();
                 RateDisplayProduct($resRating[avgR]);
                 }</script>"; 
@@ -44,7 +45,7 @@ foreach($resReviews as $key=>$item){
                     <label class="fas fa-star  display-rating"></label>
                     <label class="fas fa-star  display-rating"></label>
         </div>
-        <div class="total-ratings"><?php echo round($resRating['avgR'],2).'* , '.$resRating['countR']?> lượt đánh giá</div>
+        <div class="total-ratings"><?php echo round($resRating['avgR'],2).'* , '.$resRating['countR']; echo "<script> var avgR=$resRating[avgR],countR=$resRating[countR] </script>";?> lượt đánh giá</div>
       <div class="rating-message"></div>
       <div class="rating__wrapper">
         <div class="rating__container">

@@ -4,6 +4,7 @@ const post = $1(".rating-post");
 const widget = $1(".star-widget");
 const editBtn = $1(".rating-edit")
 const warning=$1(".rating-message")
+var oldRate;
 console.log(id_pro);
 btn.onclick = (e)=>{
     e.preventDefault();
@@ -15,7 +16,6 @@ btn.onclick = (e)=>{
           break;
       }
   }
-    console.log(rateIndex)
     const text=$1("#rate-comment").value
     console.log(text)
     fetch("./api/product_rating.php",{
@@ -29,8 +29,8 @@ btn.onclick = (e)=>{
     .then(i=>i.json())
     .then(mess=>{
         console.log(mess);
-       if(mess!=1) errorMessages(mess);
-       else location.reload();
+       if(mess==0) errorMessages(mess);
+       else updateReviews({name:mess['name'],text,rateIndex});
        // bad experience, reloading when editing or creating review  
     })
     
@@ -54,10 +54,73 @@ function sucessRating(){
 function RateDisplayProduct(index){
     var starArr=$$(".display-rating")
     for(let i=0;i<starArr.length;i++){
-        if(i<index) starArr[i].classList.remove("hidden-star")
+        if(i<Math.floor(index)) starArr[i].classList.remove("hidden-star")
         else starArr[i].classList.add("hidden-star")
     }
 }
+function updateReviews(infor){
+        const firstRvName=$1(".user-rv")?.textContent
+        const rv=$1(".rv-one")
+        console.log(firstRvName)
+        if(infor.name==firstRvName){
+            var temp=rv.children[0].children[1].children;
+            for (let i=0;i<5;i++)
+                if (i < infor.rateIndex) temp[i].classList.remove("hidden-star")
+                else  temp[i].classList.add("hidden-star")
+            rv.children[1].textContent=infor.text
+            updateNewRateIndex(1,infor.rateIndex);
+        }
+        else {
+            const newRV=document.createElement("div")
+            newRV.classList.add("rv-one")
+            newRV.innerHTML=`
+            <div class="rv-top">
+                <div class="user-rv">${infor.name}</div>
+                <div class="rating-rv star-${infor.rateIndex}?>">
+                        <label class="fas fa-star  rating-rv-star"></label>
+                        <label class="fas fa-star  rating-rv-star"></label>
+                        <label class="fas fa-star  rating-rv-star"></label>
+                        <label class="fas fa-star  rating-rv-star"></label>
+                        <label class="fas fa-star  rating-rv-star"></label>
+                </div>
+            </div>
+            <div class="rv-content">${infor.text}</div>
+            `
+            var temp=newRV.children[0].children[1].children;
+            for (let i=0;i<5;i++)
+                if (i < infor.rateIndex) temp[i].classList.remove("hidden-star")
+                else  temp[i].classList.add("hidden-star")
+            if(rv)
+                rv.insertAdjacentElement("beforebegin", newRV);
+            else $1(".wrapper-reviews").appendChild(newRV)
+                updateNewRateIndex(0,infor.rateIndex);
+        
+            }
+            sucessRating();
+
+}
+
+    // update product rate index in review and product
+function updateNewRateIndex(type,rate){
+
+    avgR=Number(avgR)
+    countR=Number(countR)
+    oldRate=Number(oldRate)
+    rate=Number(rate)
+    if(type==0){
+        countR++;
+        avgR=(avgR*countR+rate)/countR
+    }
+    else{
+        avgR=(avgR*countR+rate-oldRate)/countR;
+    }
+    RateDisplayProduct(avgR)
+    console.log(avgR)
+    oldRate=rate;
+    showRate=Math.round(avgR*Math.pow(10,2))/Math.pow(10,2);
+    $1(".total-ratings").textContent=`${showRate}* , ${countR} lượt đánh giá`
+}
+
 
 // set up stars in REVIEWS
 function setUpStartReviews(){
@@ -75,3 +138,4 @@ function setUpStartReviews(){
     }
 }
 setUpStartReviews()
+console.log(avgR,countR)
