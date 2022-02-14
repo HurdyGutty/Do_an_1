@@ -210,7 +210,6 @@
 		grid-gap: 0px;
 		grid-template-columns: 2fr 5fr;
 		align-items: stretch;
-		background: indianred;
 		grid-area: 1 / 1 /last-line / last-line;
 	}
 	#manu_info_column{
@@ -270,7 +269,6 @@
 		grid-template-rows: 1fr 1fr;
 		grid-gap: 2vh;
 		justify-self: stretch;
-		background: green;
 		padding: 2vh;
 		justify-items: center;
 		align-self: stretch;
@@ -380,7 +378,6 @@
 		grid-template-rows: 1fr 1fr;
 		grid-gap: 2vh;
 		justify-self: stretch;
-		background: green;
 		padding: 2vh;
 		justify-items: center;
 	}
@@ -583,12 +580,15 @@
 		grid-template-rows: 1fr 3fr;
 		grid-template-columns: 1fr 1.5fr;
 		grid-gap: 1vh;
+		height: 72vh;
 	}
 	#order_info > h1{
 		grid-column: 1/3;
 		background-color: royalblue;
 		margin: 0px;
 		padding-left: 2vw;
+		display: flex;
+		align-items: center;
 	}
 	#order_detail_info{
 		display: grid;
@@ -599,6 +599,7 @@
 		box-shadow: 3px 2px 3px 3px rgba(0, 0, 0, 0.2);
 		margin: 1vh;
 		padding: 1vw;
+		align-items: center;
 	}
 	#order_info > table > th, td {
 		padding: 5px;
