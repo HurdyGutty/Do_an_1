@@ -20,21 +20,15 @@ new Chart("product_week_chart", {
     },
     responsive: true,
     scales: {
-            yAxes: [{
-                display: true,
-                ticks: {
-                    beginAtZero: true,
-                    callback: function (value) { if (Number.isInteger(value)) { return value; } },
-                        stepSize: 1
-                }
-            }],
-            xAxes: [{
-              display: true,
-              ticks: [{
-                autoSkip: false
-              }]
-            }]
+      yAxes: [{
+        display: true,
+        ticks: {
+          beginAtZero: true,
+          callback: function (value) { if (Number.isInteger(value)) { return value; } },
+          stepSize: 1
         }
+      }]
+    }
   }
 });
 
@@ -42,7 +36,7 @@ new Chart("product_month_chart", {
   type: "line",
   data: {
     labels: x_product_month,
-     datasets: [{
+    datasets: [{
       fill: false,
       lineTension: 0,
       backgroundColor: "rgba(0,0,255,1.0)",
@@ -58,21 +52,21 @@ new Chart("product_month_chart", {
     },
     responsive: true,
     scales: {
-            yAxes: [{
-                display: true,
-                ticks: {
-                    beginAtZero: true,
-                    callback: function (value) { if (Number.isInteger(value)) { return value; } },
-                        stepSize: 1
-                }
-            }],
-            xAxes: [{
-              display: true,
-              ticks: {
-                autoSkip: true,
-                maxTicksLimit: 15
-              }
-            }]
+      yAxes: [{
+        display: true,
+        ticks: {
+          beginAtZero: true,
+          callback: function (value) { if (Number.isInteger(value)) { return value; } },
+          stepSize: 1
+        }
+      }],
+      xAxes: [{
+        display: true,
+        ticks: {
+          autoSkip: true,
+          maxTicksLimit: 15
+        }
+      }]
     }
   }
 });
