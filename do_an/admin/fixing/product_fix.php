@@ -13,47 +13,58 @@
 	$manufactures_sql = "select * from manufactures";
 	$manufactures = mysqli_query($ket_noi,$manufactures_sql);
 
-echo "<img id='products_photo' src='".$result['photo']."'><br>";
-echo "<form method=\"post\" action=\"update/product_update.php\">
-		<input type='hidden' name='id' value='".$id."'>
-	Tên sản phẩm: <input type='text' name='name' value='".$result['name']."'><br>
-	<div class=\"name_error\"></div>";
+echo "<div id='fixing_page'>";
+echo 	"<img id='products_fix_photo' src='".$result['photo']."'>";
+echo 	"<form method=\"post\" action=\"update/product_update.php\" id='product_fix'>
+			<input type='hidden' name='id' value='".$id."' style=\"display: none;\">
+			<label>Tên sản phẩm: </label>
+			<div>
+				<input type='text' name='name' value='".$result['name']."' size='26'>
+				<div class=\"name_error\"></div>
+			</div>";
 
-echo 	"Giới tính: ";
-echo "<select name=\"gender\">";
-foreach ($gender as $gender_each) {
-echo 	"<option";
-if ($gender_each['id'] == $result['gender_id']){echo " selected";}
-echo	">".$gender_each['id']." - ".$gender_each['gender']."</option>";
-}
+echo 	"<label>Giới tính: </label>";
+echo 	"<select name=\"gender\">";
+	foreach ($gender as $gender_each) {
+echo 		"<option value = \"".$gender_each['id']."\"";
+	if ($gender_each['id'] == $result['gender_id']){echo " selected";}
+echo		">".$gender_each['gender']."</option>";
+	}
+echo 	"</select>";
+
+echo	"<label>Thể loại: </label>";
+echo 	"<select name=\"category\">";
+	foreach ($category as $category_each) {
+echo 	"<option value = \"".$category_each['id']."\"";
+	if ($category_each['id'] == $result['category_id']){echo " selected";}
+echo	">".$category_each['category']."</option>";
+	}
 echo "</select>";
-echo "<br>";
 
-echo	"Thể loại: ";
-echo "<select name=\"category\">";
-foreach ($category as $category_each) {
-echo 	"<option";
-if ($category_each['id'] == $result['category_id']){echo " selected";}
-echo	">".$category_each['id']." - ".$category_each['category']."</option>";
-}
+echo	"<label>Nhà sản xuất: </label>";
+echo 	"<select name=\"manufactures\">";
+	foreach ($manufactures as $manufactures_each) {
+echo 	"<option value = \"".$manufactures_each['id']."\"";
+	if ($manufactures_each['id'] == $result['manufacturers_id']){echo " selected";}
+echo	">".$manufactures_each['name']."</option>";
+	}
 echo "</select>";
-echo 	"<br>";
 
-echo	"Nhà sản xuất: ";
-echo "<select name=\"manufactures\">";
-foreach ($manufactures as $manufactures_each) {
-echo 	"<option";
-if ($manufactures_each['id'] == $result['manufacturers_id']){echo " selected";}
-echo	">".$manufactures_each['id']." - ".$manufactures_each['name']."</option>";
-}
-echo "</select>";
-echo 	"<br>";
-
-echo 	"Giá sản phẩm: <input type='text' name='price' value='".$result['price']."'><br>
-			<div class=\"price_error\"></div>";
-echo	"Số lượng: <input type='text' name='quantity' value='".$result['quantity']."'><br>
-			<div class=\"quantity_error\"></div>";
-echo 	"Mô tả: <textarea name='description'>".$result['description']."</textarea><br>";
-echo "<button type=\"submit\">Sửa thông tin</button>";
+echo 	"<label>Giá sản phẩm: </label>
+		<div>
+			<input type='text' name='price' value='".$result['price']."' size='26'>
+			<div class=\"price_error\"></div>
+		</div>";
+echo	"<label>Số lượng: </label>
+		<div>
+			<input type='text' name='quantity' value='".$result['quantity']."' size='26'>
+			<div class=\"quantity_error\"></div>
+		</div>";
+echo 	"<label>Mô tả: </label>
+		<div>
+			<textarea name='description'>".$result['description']."</textarea>
+		</div>";
+echo 	"<button type=\"submit\">Sửa thông tin</button>";
 echo 	"</form>";
+echo "</div>";
 mysqli_close($ket_noi);

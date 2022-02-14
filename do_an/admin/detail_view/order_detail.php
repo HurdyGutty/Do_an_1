@@ -9,38 +9,45 @@ $result = mysqli_fetch_array(mysqli_query($ket_noi,$qry));
 $sql_order = "select out_list.*,out_product.*,products_list.name as product_name from out_list join out_product on out_list.id = out_product.out_id join products_list on out_product.product_id = products_list.id where out_list.id = $id";
 $full_order = mysqli_query($ket_noi,$sql_order);
 
-echo	"<div>Thông tin người đặt <br>";
-echo 	"Tên người đặt: ".$result['name']. "<br>";
-echo	"Số điện thoại: ".$result['phone']. "<br>";
-echo 	"Địa chỉ: ".$result['address']. "<br>";
+echo "<div id= 'order_detail'>";
+echo	"<div class='client_info'>
+			<h1> Thông tin người đặt </h1>";
+echo 		"<span>Tên người đặt: </span><span>".$result['name']. "</span>";
+echo		"<span>Số điện thoại: </span><span>".$result['phone']. "</span>";
+echo 		"<span>Địa chỉ: </span><span>".$result['address']. "</span>";
 echo	"</div>
-<div>Thông tin người nhận: <br>";
-echo	"Tên người nhận: ".$result['receiver_name']. "<br>";
-echo	"Số điện thoại: ".$result['receiver_phone']. "<br>";
-echo	"Địa chỉ: ".$result['receiver_address']. "<br>";
+		<div class='client_info'>
+			<h1>Thông tin người nhận </h1>";
+echo		"<span>Tên người nhận: </span><span>".$result['receiver_name']. "</span>";
+echo		"<span>Số điện thoại: </span><span>".$result['receiver_phone']. "</span>";
+echo		"<span>Địa chỉ: </span><span>".$result['receiver_address']. "</span>";
 echo	"</div>
-<div> Thông tin đơn: <br>";
-echo	"Thời gian đặt: ".date('H:i:s d/m/Y',strtotime($result['order_time'])). "<br>";
+		<div id = 'order_info'> 
+			<h1>Thông tin đơn: </h1>
+			<div id = 'order_detail_info'>";
+echo			"<span>Thời gian đặt: </span><span>".date('H:i:s d/m/Y',strtotime($result['order_time'])). "</span>";
 session_start();
 if($_SESSION['access'] == 1){
-	echo		"Người duyệt đơn: ". $adm_name = $result['adm_name']??'x'. "<br>";
-	echo		"Thời gian duyệt: ";
+	echo		"<span>Người duyệt đơn: </span><span>". $adm_name = $result['adm_name']??'x'. "</span>";
+	echo		"<span>Thời gian duyệt: </span><span>";
 	$work_time = $result['work_time']??'x';
 	if($work_time!== 'x')
-		{echo date('H:i:s d/m/Y',strtotime($work_time));}
-	else{echo $work_time;} 
+		{echo date('H:i:s d/m/Y',strtotime($work_time))."</span>";}
+	else{echo $work_time."</span>";} 
 };
-echo	"<table>
-<tr>
-<th>Sản phẩm</th>
-<th>Số lượng</th>
-</tr>";
+echo		"</div>";
+echo		"<table>
+				<tr>
+					<th>Sản phẩm</th>
+					<th>Số lượng</th>
+				</tr>";
 foreach($full_order as $order_item) {
-	echo	"<tr>
-	<td>".$order_item['product_name']."</td>";
-	echo	"<td>".$order_item['quantity']."</td>
-	</tr>";
+	echo		"<tr>
+					<td>".$order_item['product_name']."</td>";
+	echo			"<td class = 'text_center'>".$order_item['quantity']."</td>
+				</tr>";
 }
-echo	"</table>
-</div>";
+echo		"</table>
+		</div>
+	 </div>";
 mysqli_close($ket_noi);
