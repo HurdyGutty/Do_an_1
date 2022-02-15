@@ -2,9 +2,9 @@
 require_once '../../root/connect.php';
 $id = mysqli_real_escape_string($ket_noi,$_POST['id']);
 $name = mysqli_real_escape_string($ket_noi,$_POST['name']);
-$gender_id = mysqli_real_escape_string($ket_noi,substr($_POST['gender'],0,1));
-$category_id = mysqli_real_escape_string($ket_noi,substr($_POST['category'],0,1));
-$manufacturers_id = mysqli_real_escape_string($ket_noi,substr($_POST['manufactures'],0,1));
+$gender_id = mysqli_real_escape_string($ket_noi,$_POST['gender']);
+$category_id = mysqli_real_escape_string($ket_noi,$_POST['category']);
+$manufacturers_id = mysqli_real_escape_string($ket_noi,$_POST['manufactures']);
 $price = (int)(mysqli_real_escape_string($ket_noi,$_POST['price']));
 $quantity = (int)(mysqli_real_escape_string($ket_noi,$_POST['quantity']));
 $description = mysqli_real_escape_string($ket_noi,$_POST['description']);
