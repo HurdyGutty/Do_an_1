@@ -65,8 +65,8 @@ if (Authenticate()){
                         }
                         else {
                             $_SESSION['id']=$id;
-                            $token= md5(time()).strval(time());
                             if (isset($_POST['remembered'])) {
+                                $token= md5(time()).strval(time());
                                 setcookie('token',$token,time()+86400*30);
                                 updateToken($token);
                             }                               

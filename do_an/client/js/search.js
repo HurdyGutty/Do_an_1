@@ -1,5 +1,6 @@
 const MaxProductsOnePage=8;
-if($(".result_section").children <  MaxProductsOnePage) $(".load-more").style.display="none";
+if($(".result_section").children.length <  MaxProductsOnePage) 
+    $(".load-more").style.display="none";
 const displayingListProducts=$(".result_section");
 $(".load-more").onclick=()=>{
     fetch("./api/loadmore/search.php",{
