@@ -516,8 +516,9 @@
 	.order_list > div.align_left{
 		display: flex;
 		justify-content: left;
+		flex-direction: column;
 		align-items: center;
-		padding-left: 3vw;
+		padding-left: 2vw;
 	}
 	.one_liner{
 		height: calc(1em + 4px);
@@ -538,7 +539,13 @@
 		justify-content: center;
 		align-items: left;
 		flex-direction: column;
-		padding-left: 3vw;
+		padding-left: 2vw;
+	}
+	.border_right{
+		border-right: 4px solid rgba(0, 0, 0, 0.5);
+	}
+	.full_height{
+		height: calc(3em + 1.4vh);
 	}
 	#order_detail{
 		grid-area: 1/ 1/ last-line / last-line;
