@@ -1,8 +1,8 @@
 	:root {
-		--color-nav-hor: limegreen;
-		--color-nav-hor-active: darkgreen;
-		--color-nav-ver: cyan;
-		--color-nav-ver-active: navy;
+		--color-nav-hor: #CCFFD7;
+		--color-nav-hor-active: #9E947B;
+		--color-nav-ver: #FCD5D5;
+		--color-nav-ver-active: #4169E1;
 		--text-color: black;
 		--text-color-active: white;
 		--background-color: lightcyan;
@@ -53,7 +53,7 @@
 		font-weight: bold;
 		border-top-left-radius: 5vh;
 		border-bottom-left-radius:5vh;
-		box-shadow: inset 0px 0px 10px 10px rgba(255, 255, 255, 0.3), -2px 3px 3px 2px rgba(0, 0, 0, 0.5);
+		box-shadow: -2px 3px 3px 2px rgba(0, 0, 0, 0.5);
 
 	}
 	#nav_ver a.active{
@@ -73,6 +73,8 @@
 		justify-content: center;
 		padding-top: 1vw;
 		padding-bottom: 1vw;
+		display: relative;
+		z-index: 7;
 	}
 	#compartment input,button{
 		height: 4vh;
@@ -80,6 +82,72 @@
 	#compartment input{
 		width: 30vw;
 	}
+	#user_control {
+		background: rgba(0, 0, 0, 0.6);
+		color: var(--text-color-active);
+		justify-self: end;
+		border-radius: 1.5vh;
+		padding: 0.7vh;
+		display: flex;
+		align-items: center;
+		margin-left: 10vw;
+	}
+	#user_control > img{
+		height: 3vh;
+		width: 3vh;
+		border-radius: 50%;
+		margin-right:  1vw;
+	}
+	.dropbtn{
+		position: relative;
+  		cursor: pointer;
+  		z-index: 7;
+	}
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f1f1f1;
+		min-width: 160px;
+		overflow: auto;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 10;
+		top: 100%;
+	}
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+	.dropdown a:hover {background-color: #ddd;}
+	.show {display: block;}
+	#password_change_popup{
+		position: fixed;
+		top: 25vh;
+		left: 25vw;
+		width: 50vw;
+		height: 50vh;
+		background: whitesmoke;
+		box-shadow: 3px 3px 3px 5px rgba(0, 0, 0, 0.2);
+		color: var(--text-color);
+		visibility: hidden;
+	}
+	#password_change_popup > form{
+		width: 100%;
+		height: 100%;
+		display: grid;
+		grid-template-columns: 1fr 3fr;
+		grid-template-rows: repeat(4, 10vh);
+		padding: 3vh;
+		align-items: center;
+		grid-column-gap: 2vw;
+	}
+	#pass_change_btn{
+		grid-column: 1/3;
+		justify-self: center;
+		width: 20vw;
+	}
+	.show_grid{display: grid;}
 	#nav_hor{
 		background: var(--background-color);
 		display: flex;
@@ -93,7 +161,6 @@
 		list-style-type: none;
 		margin: 0px;
 		padding:  0px;
-
 	}
 	#nav_hor a{
 		height: 100%;
@@ -122,7 +189,7 @@
 		align-content: space-between;
 	}
 	.items {
-		background: purple;
+		background: var(--color-nav-ver-active);
 		width: 15vw;
 		height: 32vh;
 		margin-top: 5vh;
@@ -161,10 +228,10 @@
 	#info_page {
 		grid-area: 1 / 2 / last-line/ 4 ;
 		place-self:  stretch stretch;
-		background-color: #d3d3d3;
+		background-color: var(--color-nav-ver-active);
 		display: grid;
 		grid-gap: 0px;
-		grid-template-rows: 5fr 3fr;
+		grid-template-rows: 5fr 4fr;
 	}
 	#adm_photo{
 		place-self: center center;
@@ -174,8 +241,10 @@
 		place-self: start center;
 		display: flex;
 		flex-direction: column;
-		padding-left: 2vw;
-		padding-right: 2vw;
+		padding: 2vh;
+		border-radius: 15px;
+		background: whitesmoke;
+		box-shadow: 3px 3px 3px 5px rgba(0, 0, 0, 0.2);
 	}
 	#detail_info > p{
 		margin: 1vh 0px;
@@ -190,9 +259,13 @@
 		display:  grid;
 		grid-gap: 0px;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: repeat(6, 1fr);
+		grid-template-rows: repeat(6, auto-fill);
 		align-items: center;
 		justify-items: start;
+		border-radius: 15px;
+		padding: 0px 2vw;
+		background: whitesmoke;
+		box-shadow: 3px 3px 3px 5px rgba(0, 0, 0, 0.2);
 	}
 	#fix_info > p {
 		margin: 1vh 0px;
@@ -719,7 +792,7 @@
 		grid-template-columns: 27vw;
 		align-items: center;
 		justify-content: center;
-		background-color: crimson;
+		background-color: var(--color-nav-ver-active);
 		border: 2px;
 	}
 	.create_title {
@@ -751,7 +824,7 @@
 		grid-template-columns: 32vw;
 		align-items: center;
 		justify-content: center;
-		background-color: crimson;
+		background-color: var(--color-nav-ver-active);
 		border: 2px;
 	}
 	.manu_c > .create_body{
@@ -771,7 +844,7 @@
 		grid-template-columns: 32vw;
 		align-items: center;
 		justify-content: center;
-		background-color: crimson;
+		background-color: var(--color-nav-ver-active);
 		border: 2px;
 	}
 	.product_c > .create_body{

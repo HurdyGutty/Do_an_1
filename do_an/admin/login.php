@@ -5,7 +5,8 @@
 		exit();
 	}
 	if(isset($_COOKIE['remember'])){
-		$cookie_value = $_COOKIE['remember'];
+		$cookie_array = $_COOKIE['remember'];
+		$cookie_value = unserialize($cookie_array);
 		$encrypted_info = openssl_decrypt($cookie_value[1],"AES-128-ECB",$cookie_value[0]);
 		$key_string = openssl_decrypt($cookie_value[0],"AES-128-ECB",$encrypted_info);
 		$info_string = openssl_decrypt($encrypted_info,"AES-128-ECB",$key_string);

@@ -82,6 +82,21 @@
 			where ".$surfix."name like '%$tim_kiem%'
 			limit $so_ket_qua_1_trang offset $offset";
 	$ket_qua = mysqli_query($ket_noi,$sql);
+
+	$user_name = $_SESSION['name'];
+	$user_id = $_SESSION['id'];
+
+	$sql_ava = "select photo from adm_list where id = ?";
+	$stmt_ava = $ket_noi->prepare($sql_ava);
+	$stmt_ava->bind_param("s", $user_id);
+	$stmt_ava->execute();
+	$result_ava = $stmt_ava->get_result();
+	$data_ava = $result_ava->fetch_all(MYSQLI_ASSOC);
+	$ava_link = $data_ava[0]['photo'];
+
+	$match_username = array();
+	$regex_username = "/\s?[\wÀÁẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬẸẺẼÈÉÊỀẾỂỄỆÌÍỈỊĨÒÓỌỎÕÔỐỒỔỖỘƠỚỜỞỠỢÙÚŨỤỦĐƯỨỪỬỮỰỲỴÝỶỸàáảãạăắằẳẵặâấầẩẫậẹẻẽèéêềếểễệìíỉịĩòóọỏõôốồổỗộơớờởỡợùúũụủđưứừửữựỳỵýỷỹ]{1,10}$/";
+	preg_match($regex_username,$user_name,$match_username);
 	?>
 	<div id="main_div">
 		<div id="nav_panel">
@@ -99,6 +114,26 @@
 				<input type="text" name="link" value="<?php echo $link ?>" hidden >
 				<button type="submit">Tìm kiếm tên</button>
 			</form>
+			<div id="user_control" class="dropbtn" onclick="menu_drop()">
+				<img src="<?php echo $ava_link ?>">
+				<span><?php echo $match_username[0] ?></span>
+				<div id="myDropdown" class="dropdown-content">
+					<a href="#" id="popup_password" onclick="password_change_menu()">Đổi mật khẩu</a>
+    				<a href="logout.php">Đăng xuất</a>
+ 				</div>
+			</div>
+			<div id="password_change_popup">
+    			<form action="password/password_update.php" method="POST">
+					<input type="hidden" name="id" value = "<?php echo serialize($user_id); ?>" style="display: none;">
+					<label>Mật khẩu cũ: </label>
+					<input type="password" name="password_old" id = "old_p">
+					<label>Mật khẩu mới: </label>
+					<input type="password" name="password_new" id="new_p">
+					<label>Nhập lại mật khẩu mới: </label>
+					<input type="password" name="confirm_password_new" id="new_confirm">
+					<button type="submit" id="pass_change_btn" onclick="update_password()">Đổi mật khẩu</button>
+    			</form>
+    		</div>
 		</div>
 		
 		<div id="nav_hor">
@@ -218,6 +253,31 @@
 					include 'javascript/js_validate_product.php';
 					break;
 		}}?>
+
+	function menu_drop() {
+ 		 document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+	window.onclick = (event) => {
+ 		if (!event.target.matches('.dropbtn')) {
+    		var dropdowns = document.getElementsByClassName("dropdown-content");
+   			var i;
+    		for (i = 0; i < dropdowns.length; i++) {
+      			var openDropdown = dropdowns[i];
+      			if (openDropdown.classList.contains('show')) {
+        			openDropdown.classList.remove('show');
+      			}
+    		}
+  		}
+	}
+	function password_change_menu(){
+		document.getElementById("password_change_popup").style.visibility = "visible";
+	}
+	window.onclick = (event) => {
+ 		if (!event.target.matches('password_change_popup')) {
+    		document.getElementById("password_change_popup").style.removeProperty("visibility");
+  		}
+	}
 	</script>
 </body>
 </html>
