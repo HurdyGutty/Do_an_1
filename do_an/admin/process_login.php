@@ -4,7 +4,8 @@ require_once '../root/connect.php';
 
 $email = mysqli_real_escape_string($ket_noi,$_POST['email']);
 $password = mysqli_real_escape_string($ket_noi,$_POST['password']);
-$remember = mysqli_real_escape_string($ket_noi,$_POST['remember']);
+$remember_value = $_POST['remember'] ?? 0;
+$remember = mysqli_real_escape_string($ket_noi,$remember_value);
 
 $regex_email = "/^[\w\-\.]+@(?:[\w-]+\.)+[\w-]{2,4}$/";
 $regex_password = "/^((?=.*[A-Z])(?=.*[0-9]).{8,}|(abc))$/";
@@ -25,18 +26,19 @@ if(mysqli_num_rows($result) == 1){
 	$encrypted_key = openssl_encrypt($key_string,"AES-128-ECB",$encrypted_info);
 	$encrypted_info_2 = openssl_encrypt($encrypted_info,"AES-128-ECB",$encrypted_key);
 	$cookie_value = array($encrypted_key,$encrypted_info_2);
+	$cookie_array = serialize($cookie_value);
 	session_start();
 	$_SESSION['id'] = $each['id'];
 	$_SESSION['name'] = $each['name'];
 	$_SESSION['access'] = $each['access'];
 	if (!empty($remember)){
-		setcookie('remember', $cookie_value, time() + (86400*30));
+		setcookie('remember', $cookie_array, time() + (86400*30));
 	}
 	header('location:admin_view.php');
 	exit();
 }
 mysqli_close($ket_noi);
-header('location:admin_view.php');
+// header('location:admin_view.php');
 } else {
 	echo "<script type='text/javascript'>alert('Không thành công');</script>";
 	sleep(5);
