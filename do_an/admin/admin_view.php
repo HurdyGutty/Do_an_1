@@ -122,16 +122,26 @@
     				<a href="logout.php">Đăng xuất</a>
  				</div>
 			</div>
-			<div id="password_change_popup">
-    			<form action="password/password_update.php" method="POST">
-					<input type="hidden" name="id" value = "<?php echo serialize($user_id); ?>" style="display: none;">
+			<div id="password_change_popup" class="match_class">
+				<img src="https://www.freeiconspng.com/uploads/close-icon-29.png" class="close_btn" onclick = "close_menu()">
+    			<form action="password/password_update.php" method="POST" id="change_pass">
+					<input type="hidden" name="id" value = "<?php echo $user_id; ?>" style="display: none;">
 					<label>Mật khẩu cũ: </label>
-					<input type="password" name="password_old" id = "old_p">
+					<div>
+						<input type="password" name="password_old" id = "old_p">
+						<div class="password_menu_error"></div>
+					</div>
 					<label>Mật khẩu mới: </label>
-					<input type="password" name="password_new" id="new_p">
+					<div>
+						<input type="password" name="password_new" id="new_p">
+						<div class="password_menu_error"></div>
+					</div>
 					<label>Nhập lại mật khẩu mới: </label>
-					<input type="password" name="confirm_password_new" id="new_confirm">
-					<button type="submit" id="pass_change_btn" onclick="update_password()">Đổi mật khẩu</button>
+					<div>
+						<input type="password" name="confirm_password_new" id="new_confirm">
+						<div class="password_menu_error"></div>
+					</div>
+					<button type="submit" id="pass_change_btn" onclick="update_password(event)">Đổi mật khẩu</button>
     			</form>
     		</div>
 		</div>
@@ -269,14 +279,47 @@
       			}
     		}
   		}
-	}
+  		}	
 	function password_change_menu(){
-		document.getElementById("password_change_popup").style.visibility = "visible";
+		document.getElementById("password_change_popup").style.display = "block";
 	}
-	window.onclick = (event) => {
- 		if (!event.target.matches('password_change_popup')) {
-    		document.getElementById("password_change_popup").style.removeProperty("visibility");
-  		}
+	function close_menu(){
+		document.getElementById("password_change_popup").style.display = "none";
+	}
+	function update_password(event){
+		event.preventDefault();
+		let password_old = document.getElementsByName("password_old")[0].value;
+		let password_new = document.getElementsByName("password_new")[0].value;
+		let confirm_password_new = document.getElementsByName("confirm_password_new")[0].value;
+		let regex_password = /^((?=.*[A-Z])(?=.*[0-9]).{8,}|(abc))$/;
+		let a = 0
+			if (password_old.length === 0 || password_new.length === 0 || confirm_password_new.length === 0) {
+				document.getElementsByClassName('password_menu_error')[0].textContent = 'Mật khẩu không được để trống';
+				document.getElementsByClassName('password_menu_error')[1].textContent = 'Mật khẩu không được để trống';
+				document.getElementsByClassName('password_menu_error')[2].textContent = 'Mật khẩu không được để trống';
+				a++;
+			} else if(!regex_password.test(password_old)) {
+				document.getElementsByClassName('password_menu_error')[0].textContent = 'Mật khẩu cần ít nhất 8 chữ cái trong đó có 1 chữ cái in hoa, 1 chữ số';
+				a++;
+			} else if (!regex_password.test(password_new)){
+				document.getElementsByClassName('password_menu_error')[1].textContent = 'Mật khẩu cần ít nhất 8 chữ cái trong đó có 1 chữ cái in hoa, 1 chữ số';
+				a++;
+			} else if (!regex_password.test(confirm_password_new)){
+				document.getElementsByClassName('password_menu_error')[2].textContent = 'Mật khẩu cần ít nhất 8 chữ cái trong đó có 1 chữ cái in hoa, 1 chữ số';
+				a++;
+			} else if (password_new !== confirm_password_new){
+				document.getElementsByClassName('password_menu_error')[2].textContent = 'Ô này không trùng với mật khẩu mới'
+				a++;
+			} else if (password_old === password_new){
+				document.getElementsByClassName('password_menu_error')[1].textContent = 'Mật khẩu mới bị trùng với mật khẩu cũ'
+				a++;
+			} else{
+				document.getElementsByClassName('password_menu_error')[0].innerHTML = '';
+				document.getElementsByClassName('password_menu_error')[1].innerHTML = '';
+				document.getElementsByClassName('password_menu_error')[2].innerHTML = '';
+				a = -1;
+			}
+		if (a == -1) document.getElementById("change_pass").submit();
 	}
 	</script>
 </body>

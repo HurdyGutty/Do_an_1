@@ -130,7 +130,15 @@
 		background: whitesmoke;
 		box-shadow: 3px 3px 3px 5px rgba(0, 0, 0, 0.2);
 		color: var(--text-color);
-		visibility: hidden;
+	}
+	.match_class{
+		display: none;
+	}
+	.close_btn{
+		width: 4vh;
+		height: 4vh;
+		float:right;
+		cursor: pointer;
 	}
 	#password_change_popup > form{
 		width: 100%;
