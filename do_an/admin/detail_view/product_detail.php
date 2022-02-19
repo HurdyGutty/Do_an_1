@@ -1,6 +1,7 @@
 <?php 
-$id = $_GET['d'];
 require_once '../../root/connect.php';
+$id = mysqli_real_escape_string($ket_noi,$_GET['d']);
+
 $qry = "select products_list.*,products_gender.*,products_category.*,manufactures.name as manufacturers_name from products_list join products_gender on products_list.gender_id = products_gender.id join products_category on products_category.id = products_list.category_id  join manufactures on products_list.manufacturers_id = manufactures.id where products_list.id = $id";
 $result = mysqli_fetch_array(mysqli_query($ket_noi,$qry));
 
@@ -20,7 +21,7 @@ echo 				"<button onclick='fix_page(".$id.")'>Sửa thông tin</button>";
 echo 			"</div>";
 echo 	"</div>";
 
-$qry_date = "select DATE(out_list.order_time) as date, quantity from out_product left join out_list on out_product.out_id = out_list.id where out_product.product_id = '$id' && datediff(NOW(),out_list.order_time) >= 0 && datediff(NOW(),out_list.order_time) < ? ORDER BY date DESC";
+$qry_date = "select DATE(out_list.order_time) as date, quantity from out_product left join out_list on out_product.out_id = out_list.id where out_product.product_id = '$id' && datediff(NOW(),out_list.order_time) >= 0 && datediff(NOW(),out_list.order_time) < ? ORDER BY date ASC";
 
 $stmt_week = $ket_noi->prepare($qry_date);
 $stmt_week->bind_param('i',$week);
@@ -32,7 +33,7 @@ $data_week = $result_week->fetch_all(MYSQLI_ASSOC);
 function date_array(int $n) {
 	$current_time = time();
 	$date_counter = array();
-	for ($i = 0; $i < $n; $i++){
+	for ($i = $n - 1; $i >= 0; $i--){
 		$date_counter[date("Y-m-d",($current_time - $i*24*60*60))] = 0;
 	}
 	return $date_counter;

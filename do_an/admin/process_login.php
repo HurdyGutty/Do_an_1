@@ -17,6 +17,7 @@ if (preg_match($regex_email, $email) == 1 && preg_match($regex_password, $passwo
 $sql = "select * from adm_list 
 where email = '$email' and  password = '$password'";
 
+session_start();
 $result = mysqli_query($ket_noi,$sql);
 if(mysqli_num_rows($result) == 1){
 	$each = mysqli_fetch_array($result);
@@ -27,21 +28,24 @@ if(mysqli_num_rows($result) == 1){
 	$encrypted_info_2 = openssl_encrypt($encrypted_info,"AES-128-ECB",$encrypted_key);
 	$cookie_value = array($encrypted_key,$encrypted_info_2);
 	$cookie_array = serialize($cookie_value);
-	session_start();
+	
 	$_SESSION['id'] = $each['id'];
 	$_SESSION['name'] = $each['name'];
 	$_SESSION['access'] = $each['access'];
 	if (!empty($remember)){
 		setcookie('remember', $cookie_array, time() + (86400*30));
 	}
+	mysqli_close($ket_noi);
 	header('location:admin_view.php');
 	exit();
-}
-mysqli_close($ket_noi);
-// header('location:admin_view.php');
-} else {
-	echo "<script type='text/javascript'>alert('Không thành công');</script>";
-	sleep(5);
+}}
+	$_SESSION['login_error'] = 1;
 	mysqli_close($ket_noi);
-	header('location:logout.php');
-}
+	header("location:login.php");
+
+// } else {
+// 	echo "<script type='text/javascript'>alert('Không thành công');</script>";
+// 	sleep(5);
+// 	mysqli_close($ket_noi);
+// 	header('location:logout.php');
+// }

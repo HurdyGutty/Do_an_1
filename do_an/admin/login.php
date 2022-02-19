@@ -18,6 +18,10 @@
 		header('location:admin_view.php');
 		exit();
 	}
+	if (isset($_SESSION['login_error'])) {
+		echo "<script type='text/javascript'>alert('Đăng nhập không thành công');</script>";
+		unset($_SESSION["login_error"]);
+	}
 ?>
 <!DOCTYPE html>
 <html>

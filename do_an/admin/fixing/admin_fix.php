@@ -1,6 +1,7 @@
 <?php
-	$id = $_GET['d'];
 	require_once '../../root/connect.php';
+	$id = mysqli_real_escape_string($ket_noi,$_GET['d']);
+	
 	$qry = "select * from adm_list where id = $id";
 	$result = mysqli_fetch_array(mysqli_query($ket_noi,$qry));
 

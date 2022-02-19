@@ -1,7 +1,7 @@
 	:root {
-		--color-nav-hor: #CCFFD7;
-		--color-nav-hor-active: #9E947B;
-		--color-nav-ver: #FCD5D5;
+		--color-nav-hor: #34B351;
+		--color-nav-hor-active: #8B97B3;
+		--color-nav-ver: #FFB7B6;
 		--color-nav-ver-active: #4169E1;
 		--text-color: black;
 		--text-color-active: white;
@@ -546,6 +546,9 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
+	}
+	.list_items:not(:first-child){
+		cursor: pointer;
 	}
 	.list_items select {
 		margin-right: 5vw;
