@@ -100,7 +100,7 @@
 	?>
 	<div id="main_div">
 		<div id="nav_panel">
-			<img src="//upload.wikimedia.org/wikipedia/vi/thumb/3/37/Bitis_logo.svg/501px-Bitis_logo.svg.png">
+			<img src="hn-initial-logo-ampersand-monogram-600w-336042029.webp">
 		<ul>
 			<div id="nav_ver">
 			<?php include "page_parts/nav_ver.php"; ?>	
